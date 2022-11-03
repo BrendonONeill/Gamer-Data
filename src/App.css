@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
+
+*,*::before,*::after
+{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+:root
+{
+  --body-black: #141718;
+  --main-container-black:  #1E1F23;
+  --sidebar-black: #141718;
+  --purple-shade: #6846EC;
+  --light-shade-grey: #28292D;
+  --lightest-shade-grey: #60626D;
+  --green-shade: #29EBC8;
+  --call-to-action-red: #F14648;
+  --main-font-size: 16px;
+  --font-grey: #fff;
+  --black: #000;
+}
+
+[data-bg-colour = "red"]
+{
+ background-color: var(--call-to-action-red);
+ color: var(--black);
+}
+
+[data-bg-colour = "purple"]
+{
+ background-color: var(--purple-shade);
+ color: var(--black);
+}
+
+img
+{
+  width: 100%;
+}
+
+
+body
+{
+  background-color: var(--body-black);
+  color: var(--font-grey);
+  font-family: 'Patua One', cursive;
+}
+
+.main-container
+{
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: var(--main-container-black);
+}
+
+.nav
+{
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--light-shade-grey);
+  padding: 1rem 2rem;
+
+}
+
+.logo-nav
+{
+  display: flex;
+  flex-basis: 15%;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav ul
+{
+  list-style: none;
+  display: flex;
+  flex-flow: row;
+  flex-basis: 20%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.nav ul li a
+{
+  padding: 1rem;
+  display: block;
+  border-radius: 20px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.main-container-content
+{
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.sidebar
+{
+  display: flex;
+  padding: 1rem;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.games-grid
+{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 1rem;
+  column-gap: 0.8rem;
+  padding: 1rem;
+}
+
+.game-card
+{
+  position: relative;
+  height: 300px;
+  border-radius: 20px 20px 10px 10px;
+  background-color: var(--light-shade-grey);
+  display: grid;
+  grid-template-areas: 
+  "card-image card-image card-image card-image"
+  "game-title game-title game-title game-title"
+  "game-title game-title game-title game-title"
+  "game-title game-title game-title game-title";
+}
+
+.game-card-image
+{
+  grid-area: card-image;
+  overflow-y: hidden;
+  height: 170px;
+  border-radius: 20px 20px 0 0;
+}
+
+.test
+{
+  min-height: 170px;
+}
+
+.game-card-consoles
+{
+  grid-area: consoles;
+  background-color: var(--purple-shade);
+  position: absolute;
+  max-width: 15%;
+  height: inherit;
+  top: 0;
+  right: 0;
+  border-radius: 0 20px 0 0;
+  padding: 0.5rem;
+}
+
+.game-card-consoles ul
+{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0.2rem;
+}
+
+
+.game-card-title
+{
+  grid-area: game-title;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
