@@ -11,9 +11,11 @@ record your list of game from the best to the one you havent got around to.
 
 
 ### working on
+Just after adding firebase and collecting data from user clicks. 
+Need to convert the messy code into components and smaller files. 
+Needs to sort out displaying the games information in more detail. 
+Create an object that will be added to the database. 
+also need to limit the data in the database to prevent people from abusing the project.
 
-The UI and the struture of the app. 
-To display logos on A list if that game is playable on that console. 
-Images to be placeholders when an image doesnt show. 
-To implament firebase to record the tracking of the games
+
 
