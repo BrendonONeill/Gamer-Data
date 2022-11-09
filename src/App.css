@@ -1,38 +1,267 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
+
+*,*::before,*::after
+{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+:root
+{
+  --body-black: #141718;
+  --main-container-black:  #1E1F23;
+  --sidebar-black: #141718;
+  --purple-shade: #6846EC;
+  --light-shade-grey: #28292D;
+  --lightest-shade-grey: #60626D;
+  --green-shade: #29EBC8;
+  --call-to-action-red: #F14648;
+  --main-font-size: 16px;
+  --font-grey: #fff;
+  --black: #000;
+  --meta-green: #6c3;
+  --meta-green-light: rgb(159, 252, 112);
+}
+
+[data-bg-colour = "red"]
+{
+ background-color: var(--call-to-action-red);
+ color: var(--font-grey);
+}
+
+[data-bg-colour = "purple"]
+{
+ background-color: var(--purple-shade);
+ color: var(--font-grey);
+}
+
+img
+{
+  width: 100%;
+}
+
+
+body
+{
+  background-color: var(--body-black);
+  color: var(--font-grey);
+  font-family: 'Patua One', cursive;
+}
+
+.main-container
+{
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: var(--main-container-black);
+}
+
+.nav
+{
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--light-shade-grey);
+  padding: 1rem 2rem;
+
+}
+
+.logo-nav
+{
+  display: flex;
+  flex-basis: 15%;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav ul
+{
+  list-style: none;
+  display: flex;
+  flex-flow: row;
+  flex-basis: 20%;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.nav ul li a
+{
+  padding: 0.6rem 1rem ;
+  display: block;
+  border-radius: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-inline: 0.5rem;
+}
+
+.main-container-content
+{
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.sidebar
+{
+  display: flex;
+  padding: 1rem;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: var(--purple-shade);
+  border-radius: 10px;
+}
+
+.sidebar ul
+{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 2rem;
+}
+
+.sidebar ul li
+{
+  padding: 1rem;
+  font-size: 1.5rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.games-grid
+{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 1rem;
+  column-gap: 0.8rem;
+  padding: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.game-card
+{
+  position: relative;
+  height: 300px;
+  border-radius: 20px 20px 10px 10px;
+  background-color: var(--light-shade-grey);
+  display: grid;
+  grid-template-areas: 
+  "card-image card-image card-image card-image"
+  "game-title game-title game-title game-title"
+  "game-title game-title game-title game-title"
+  "game-title game-title game-title game-title";
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.game-card-image
+{
+  grid-area: card-image;
+  overflow-y: hidden;
+  height: 170px;
+  border-radius: 20px 20px 0 0;
+}
+
+.test
+{
+  min-height: 170px;
+}
+
+.game-card-consoles
+{
+  grid-area: consoles;
+  background-color: var(--purple-shade);
+  position: absolute;
+  max-width: 15%;
+  height: inherit;
+  top: 0;
+  right: 0;
+  border-radius: 0 20px 0 0;
+  padding: 0.5rem;
+}
+
+.game-card-consoles ul
+{
+  margin: 0;
+  padding: 0;
+  list-style: none;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  padding: 0.2rem;
+}
+
+
+.game-card-title
+{
+  grid-area: game-title;
+  display: grid;
+  padding: 1rem;
   align-items: center;
+  grid-template-areas: 
+  "game-name game-name game-name game-name"
+  ". . . ."
+  "release release . .";
+}
+
+.game-card-name
+{
+  grid-area: game-name;
+  text-align: center;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--purple-shade);
+}
+.game-card-release
+{
+  grid-area: release ;
+}
+.game-card-score
+{
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+  padding: 0.6rem;
+  background-color: var(--body-black);
+  border: 3px solid var(--meta-green);
+  border-right: 3px solid var(--meta-green-light);
+  border-top: 3px solid var(--meta-green-light);
+}
+
+.testing-icon
+{
+  background-color: var(--light-shade-grey);
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+}
+
+.login-container
+{
+  background-color: var(--purple-shade);
+  padding: 2rem;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-content: center;
+  flex-flow: column;
+  max-width: 80%;
+  margin: 5rem auto;
+  border-radius: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.login-container form
+{
+  padding: 2rem;
+  display: flex;
+  flex-flow: column;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form-label
+{
+  padding: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+
+.form-input
+{
+ padding: 0.6rem;
+ border: 1px solid var(--black);
+ border-radius: 10px;
+ margin-bottom: 1rem;
+ width: 500px;
 }
