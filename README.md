@@ -11,6 +11,7 @@ Information cards for each game.
 rewiring the adding to database. 
 Clean up some bugs and make sure adding to database is limited. 
 should be able to deploy for a test run. 
+Use React Query to get apis. 
 
 responsive design. 
 
