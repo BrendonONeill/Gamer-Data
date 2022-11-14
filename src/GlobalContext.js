@@ -7,6 +7,7 @@ const GlobalContext = createContext();
 
 export function GlobalProvider({ children }) {
   const [data, setData] = useState([]);
+  const [cardClicked, setCardClicked] = useState([]);
   const [games, setGames] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,7 +30,7 @@ export function GlobalProvider({ children }) {
         setPassword("");
         setEmail("");
         setLoginStatus(true);
-        navigate("/User-Games");
+        navigate("../games/User-Games");
       })
       .catch((error) => {
         console.log(error);
@@ -39,14 +40,7 @@ export function GlobalProvider({ children }) {
     console.log("test 3");
   };
 
-  const storeCardInfo = (id) => {
-    console.log(id);
-    console.log("test 1");
-    const poke = data.find((x) => x.id === id);
-    setStoreData(poke);
-    console.log("test 2");
-    console.log(storeData);
-  };
+  const storeCardInfo = (id) => {};
 
   return (
     <GlobalContext.Provider
@@ -69,6 +63,8 @@ export function GlobalProvider({ children }) {
         storeCardInfo,
         loginStatus,
         setLoginStatus,
+        cardClicked,
+        setCardClicked,
       }}
     >
       {children}

@@ -1,12 +1,22 @@
 import GlobalContext from "../GlobalContext";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Cards({ d }) {
-  const { storeCardInfo } = useContext(GlobalContext);
+  const { setCardClicked, cardClicked } = useContext(GlobalContext);
+  const navigate = useNavigate();
+
+  const gameInformation = (d) => {
+    navigate(`../games-info/${d}`);
+  };
 
   return (
     <>
-      <div className="game-card" key={d.id} onClick={() => storeCardInfo(d.id)}>
+      <div
+        className="game-card"
+        key={d.id}
+        onClick={() => gameInformation(d.id)}
+      >
         <div className="game-card-image">
           <img
             className="test"
@@ -18,7 +28,7 @@ function Cards({ d }) {
               {d.parent_platforms.some((e) => e.platform.name === "PC") ? (
                 <li>
                   <img
-                    src="pc.svg"
+                    src={"../pc.svg"}
                     alt="Girl in a jacket"
                     width="30px"
                     height="30px"
@@ -32,7 +42,7 @@ function Cards({ d }) {
               ) ? (
                 <li>
                   <img
-                    src="playstation.svg"
+                    src="../playstation.svg"
                     alt="Girl in a jacket"
                     width="30px"
                     height="30px"
@@ -44,7 +54,7 @@ function Cards({ d }) {
               {d.parent_platforms.some((e) => e.platform.name === "Xbox") ? (
                 <li>
                   <img
-                    src="xbox.svg"
+                    src="../xbox.svg"
                     alt="Girl in a jacket"
                     width="30px"
                     height="30px"
@@ -58,7 +68,7 @@ function Cards({ d }) {
               ) ? (
                 <li>
                   <img
-                    src="nintendo.svg"
+                    src="../nintendo.svg"
                     alt="Girl in a jacket"
                     width="30px"
                     height="30px"
