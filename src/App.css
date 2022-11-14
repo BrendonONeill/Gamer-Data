@@ -14,6 +14,7 @@
   --main-container-black:  #1E1F23;
   --sidebar-black: #141718;
   --purple-shade: #6846EC;
+  --dark-purple-shade: #4c34aa;
   --light-shade-grey: #28292D;
   --lightest-shade-grey: #60626D;
   --green-shade: #29EBC8;
@@ -104,9 +105,9 @@ body
 .sidebar
 {
   display: flex;
-  padding: 1rem;
+  flex-flow: column;
+  padding: 0.2rem;
   align-items: flex-start;
-  justify-content: center;
   background-color: var(--purple-shade);
   border-radius: 10px;
 }
@@ -117,13 +118,23 @@ body
   padding: 0;
   margin: 0;
   margin-top: 2rem;
+  width: 100%;
 }
 
 .sidebar ul li
 {
   padding: 1rem;
-  font-size: 1.5rem;
-  text-align: center;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--dark-purple-shade);
+  
+}
+
+.sidebar a
+{
+  text-decoration: none;
+  color: var(--font-grey);
+  display: block;
 }
 
 .games-grid
@@ -226,7 +237,7 @@ body
 
 .testing-icon
 {
-  background-color: var(--light-shade-grey);
+  background-color: var(--dark-purple-shade);
   padding: 0.6rem 1rem;
   border-radius: 10px;
 }
@@ -264,4 +275,84 @@ body
  border-radius: 10px;
  margin-bottom: 1rem;
  width: 500px;
+}
+
+.filter
+{
+  margin-top: 0.5rem;
+  max-width: 100%;
+  background-color: var(--light-shade-grey);
+  padding: 1.2rem;
+  border-radius: 10px;
+}
+
+.games-information-card
+{
+  background-color: var(--purple-shade);
+  width: 75%;
+  margin: 1rem auto;
+  border-radius: 10px;
+}
+
+.game-information-card-text
+{
+  display: grid;
+  padding: 1rem;
+  gap: 1rem;
+  grid-template-areas: 
+  "game-information-title game-information-title game-information-title game-information-title"
+  ". . game-information-button game-information-button"
+  "game-information-release game-information-score game-information-rating ."
+  "game-information-genre game-information-genre game-information-platforms game-information-platforms"
+  "game-information-dev game-information-dev game-information-pub game-information-pub "
+  "game-information-details game-information-details game-information-details game-information-details " ;
+}
+
+.game-information-card-text-title
+{
+  grid-area: game-information-title;
+}
+.game-information-card-text-button
+{
+  grid-area: game-information-button;
+}
+.game-information-card-text-score
+{
+  grid-area: game-information-score;
+}
+.game-information-card-text-release
+{
+  grid-area: game-information-release;
+}
+.game-information-card-text-genre
+{
+  grid-area: game-information-genre;
+}
+.game-information-card-text-platforms
+{
+  grid-area: game-information-platforms;
+}
+.game-information-card-text-details
+{
+  grid-area: game-information-details;
+}
+.game-information-card-text-dev
+{
+  grid-area: game-information-dev;
+}
+.game-information-card-text-pub
+{
+  grid-area: game-information-pub;
+}
+.game-information-card-text-rating
+{
+  grid-area: game-information-rating;
+}
+
+.game-header
+{
+  padding: 0.6rem 0.4rem;
+  background-color: var(--dark-purple-shade);
+  border-bottom: 3px solid white;
+  border-radius: 5px;
 }

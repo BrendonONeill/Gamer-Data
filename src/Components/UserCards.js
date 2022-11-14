@@ -1,7 +1,19 @@
+import { useNavigate } from "react-router-dom";
+
 function UserCards({ d }) {
+  const navigate = useNavigate();
+
+  const gameInformation = (d) => {
+    navigate(`../games-info/${d}`);
+  };
+
   return (
     <>
-      <div className="game-card" key={d.id}>
+      <div
+        className="game-card"
+        key={d.id}
+        onClick={() => gameInformation(d.game_id)}
+      >
         <div className="game-card-image">
           <img className="test" src={d.image} alt="Girl in a jacket" />
           <div className="game-card-consoles">
@@ -9,7 +21,7 @@ function UserCards({ d }) {
               {d.platforms.some((e) => e.platform.name === "PC") ? (
                 <li>
                   <img
-                    src="pc.svg"
+                    src="../pc.svg"
                     alt="Girl in a jacket"
                     width="30px"
                     height="30px"
@@ -21,7 +33,7 @@ function UserCards({ d }) {
               {d.platforms.some((e) => e.platform.name === "PlayStation") ? (
                 <li>
                   <img
-                    src="playstation.svg"
+                    src="../playstation.svg"
                     alt="Girl in a jacket"
                     width="30px"
                     height="30px"
@@ -33,7 +45,7 @@ function UserCards({ d }) {
               {d.platforms.some((e) => e.platform.name === "Xbox") ? (
                 <li>
                   <img
-                    src="xbox.svg"
+                    src="../xbox.svg"
                     alt="Girl in a jacket"
                     width="30px"
                     height="30px"
@@ -45,7 +57,7 @@ function UserCards({ d }) {
               {d.platforms.some((e) => e.platform.name === "Nintendo") ? (
                 <li>
                   <img
-                    src="nintendo.svg"
+                    src="../nintendo.svg"
                     alt="Girl in a jacket"
                     width="30px"
                     height="30px"
@@ -58,9 +70,9 @@ function UserCards({ d }) {
           </div>
         </div>
         <div className="game-card-title">
-          <h2>{d.name}</h2>
-          <h3>{d.score}</h3>
-          <h3>{d.released}</h3>
+          <h3 className="game-card-name">{d.name}</h3>
+          <p className="game-card-score">{d.metacritic}</p>
+          <p className="game-card-release">{d.released.substring(0, 4)}</p>
         </div>
       </div>
     </>

@@ -1,36 +1,22 @@
 import GlobalContext from "../GlobalContext";
 import { useContext } from "react";
-import { db } from "../Firebase";
-import { collection, addDoc } from "firebase/firestore";
 import { useEffect } from "react";
 import NavSidebar from "../Components/NavSidebar";
 import Header from "../Components/Header";
 import CardList from "../Components/CardList";
+import CardCaro from "../Components/CardCaro";
+import Filter from "../Components/Filter";
 
 function Main() {
-  const { data, uid, storeData, setData } = useContext(GlobalContext);
-
-  useEffect(() => {
-    const addData = async () => {
-      console.log("test 3");
-      const gamesCollectionRef = collection(db, "users", `${uid}`, "games");
-      console.log("test 3.5");
-      await addDoc(gamesCollectionRef, {
-        name: storeData.name,
-        image: storeData.background_image,
-        score: storeData.metacritic,
-        platforms: storeData.parent_platforms,
-        released: storeData.released,
-      });
-      console.log("test 4");
-    };
-    addData();
-  }, [storeData]);
+  const { data, uid, storeData, setData, loginStatus } =
+    useContext(GlobalContext);
 
   // calls to api for games info
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("");
+      const response = await fetch(
+        `https://api.rawg.io/api/games?ordering=-metacritic&key=${process.env.REACT_APP_API_KEY}&page=1`
+      );
       const api = await response.json();
       setData(api.results);
     };
@@ -42,10 +28,13 @@ function Main() {
     <>
       <div className="main-container">
         <Header />
+        <CardCaro />
+        <Filter />
         {data.length > 0 && (
           <main className="main-container-content">
             <NavSidebar />
             <CardList />
+            <button>More</button>
           </main>
         )}
       </div>

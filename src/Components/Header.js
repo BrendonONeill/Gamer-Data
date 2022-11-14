@@ -5,12 +5,13 @@ import { useContext } from "react";
 function Header() {
   const navigate = useNavigate();
   const { currentUser, loginStatus } = useContext(GlobalContext);
+
   return (
     <nav className="nav">
       <div
         className="logo-nav"
         onClick={() => {
-          navigate("/");
+          navigate("/games");
         }}
       >
         <h1>Gamer-Data</h1>
@@ -25,7 +26,7 @@ function Header() {
             <a
               data-bg-colour="purple"
               onClick={() => {
-                navigate("/Login");
+                navigate("../games/Login");
               }}
             >
               Sign In
