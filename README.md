@@ -2,16 +2,14 @@
 A game tracking app 
 
 ## progress
-Firebase was linked and info was shared between the user and the api
-UI was cleaned up .
+I have the API linked aswell as the database. I can add to the database but cant delete right now. there is a few bugs with filtering and game cards information.
 
 ### Working on
-rewriting use effects as it causing toop many errors or weird layouts. 
-Fixing Genre bug. 
-Console filter.   
-Clean up some bugs.  
+Need to look into rerendering when in card information. 
+Added React query, need to look into more wasnt working how i wanted.  
+Console filter.    
+Clean up some bugs.   
 should be able to deploy for a test run soon.   
-Use React Query to get apis. 
 
 responsive design.
 Add and improve accessibility on website.
