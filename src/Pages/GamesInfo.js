@@ -1,6 +1,7 @@
 import NavSidebar from "../Components/NavSidebar";
 import Header from "../Components/Header";
 import GameDetails from "../Components/GameDetails";
+import Footer from "../Components/Footer";
 
 function GamesInfo() {
   return (
@@ -9,6 +10,7 @@ function GamesInfo() {
       <main className="main-container-content">
         <NavSidebar />
         <GameDetails />
+        <Footer />
       </main>
     </div>
   );

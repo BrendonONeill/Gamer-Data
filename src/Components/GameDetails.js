@@ -3,7 +3,17 @@ import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../Firebase";
-import { collection, addDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  deleteDoc,
+  query,
+  where,
+  doc,
+  getDocs,
+} from "firebase/firestore";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
 function GameDetails() {
   const [apiCalled, setApiCalled] = useState(false);
@@ -13,16 +23,30 @@ function GameDetails() {
     useContext(GlobalContext);
 
   useEffect(() => {
-    console.log("useEffect called");
-    const fetchData = async (para) => {
-      const response = await fetch(
-        `https://api.rawg.io/api/games/${para.id}?key=${process.env.REACT_APP_API_KEY}`
-      );
-      const api = await response.json();
-      setCardClicked(api);
-      setApiCalled(true);
+    setGameinDB(false);
+    const test = () => {
+      const db = games.find((game) => game.name === cardClicked.name);
+      console.log("This is db" + db);
+      if (db) {
+        setGameinDB(true);
+
+        setCardClicked(db);
+      }
     };
-    fetchData(params);
+    test();
+    if (gameInDB) {
+    } else {
+      const fetchData = async (para) => {
+        const response = await fetch(
+          `https://api.rawg.io/api/games/${para.id}?key=${process.env.REACT_APP_API_KEY}`
+        );
+        const api = await response.json();
+        setCardClicked(api);
+        setApiCalled(true);
+      };
+      fetchData(params);
+    }
+    console.log("useEffect called");
   }, []);
 
   const addToFirebase = (data) => {
@@ -37,7 +61,15 @@ function GameDetails() {
     addData();
   };
 
-  const deleteFromFirebase = (id) => {};
+  const deleteFromFirebase = (id) => {
+    const deleteData = async () => {
+      const gamesCollectionRef = collection(db, "users", `${uid}`, "games");
+      const cat = query(gamesCollectionRef, where("games_id", "==", `${id}`));
+      console.log("inter");
+      await deleteDoc(cat);
+    };
+    deleteData();
+  };
 
   const createObject = (data) => {
     const obj = {
@@ -58,7 +90,7 @@ function GameDetails() {
 
   return (
     <>
-      {console.log(cardClicked)}
+      {gameInDB[0]}
       {apiCalled ? (
         <div className="games-information-card">
           <div>
@@ -72,15 +104,47 @@ function GameDetails() {
               <p className="game-header">Platforms</p>
               <p>{cardClicked.platforms[0].platform.name}</p>
             </div>
-            <div className="game-information-card-text-button">
-              {!gameInDB ? (
-                <button onClick={() => addToFirebase(cardClicked)}>Plus</button>
-              ) : (
-                <button onClick={() => deleteFromFirebase(cardClicked.id)}>
-                  Min
-                </button>
-              )}
-            </div>
+            {loginStatus && (
+              <>
+                <div className="game-information-card-text-form">
+                  <form>
+                    <label>
+                      Game Status{" "}
+                      <select>
+                        <option>Not Played</option>
+                        <option>Playing</option>
+                        <option>Completed</option>
+                      </select>
+                    </label>
+                    <label>
+                      Rating{" "}
+                      <input type="number" min="0" max="100" value={0}></input>
+                    </label>
+                    <button>Update</button>
+                  </form>
+                </div>
+                <div className="game-information-card-text-button">
+                  {!gameInDB ? (
+                    <button
+                      className="firebase-button "
+                      data-colour="Plus"
+                      onClick={() => addToFirebase(cardClicked)}
+                    >
+                      {" "}
+                      <FontAwesomeIcon icon={faPlus} /> My Games
+                    </button>
+                  ) : (
+                    <button
+                      className="firebase-button "
+                      data-colour="Minus"
+                      onClick={() => deleteFromFirebase(cardClicked.id)}
+                    >
+                      <FontAwesomeIcon icon={faMinus} /> My Games
+                    </button>
+                  )}
+                </div>
+              </>
+            )}
             <div className="game-information-card-text-genre">
               <p className="game-header">Genres</p>
               <p>{cardClicked.genres[0].name}</p>
@@ -103,7 +167,7 @@ function GameDetails() {
             </div>
             <div className="game-information-card-text-rating">
               <p className="game-header">Rating</p>
-              <p>{cardClicked.esrb_rating.name}</p>
+              <p>{cardClicked.esrb_rating?.name || "N/A"}</p>
             </div>
             <div className="game-information-card-text-details">
               <p>{cardClicked.description_raw}</p>

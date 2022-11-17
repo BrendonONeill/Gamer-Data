@@ -3,11 +3,11 @@ import GlobalContext from "../GlobalContext";
 import { useContext } from "react";
 
 function CardList({ d }) {
-  const { data } = useContext(GlobalContext);
+  const { cards } = useContext(GlobalContext);
 
   return (
     <div className="games-grid">
-      {data.map((d) => (
+      {cards?.map((d) => (
         <Cards d={d} />
       ))}
     </div>
