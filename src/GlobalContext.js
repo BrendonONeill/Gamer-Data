@@ -7,6 +7,9 @@ const GlobalContext = createContext();
 
 export function GlobalProvider({ children }) {
   const [data, setData] = useState([]);
+
+  const [pagination, setPagination] = useState(1);
+  const [cards, setCards] = useState([]);
   const [cardClicked, setCardClicked] = useState([]);
   const [games, setGames] = useState([]);
   const [email, setEmail] = useState("");
@@ -40,6 +43,11 @@ export function GlobalProvider({ children }) {
     console.log("test 3");
   };
 
+  const resetPagination = () => {
+    setPagination(1);
+    setCards([]);
+  };
+
   const storeCardInfo = (id) => {};
 
   return (
@@ -65,6 +73,11 @@ export function GlobalProvider({ children }) {
         setLoginStatus,
         cardClicked,
         setCardClicked,
+        pagination,
+        setPagination,
+        cards,
+        setCards,
+        resetPagination,
       }}
     >
       {children}

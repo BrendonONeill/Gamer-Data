@@ -9,17 +9,17 @@ import { useContext } from "react";
 
 function Search() {
   let params = useParams();
-  const { data, setData } = useContext(GlobalContext);
+  const { setCards } = useContext(GlobalContext);
 
   useEffect(() => {
-    setData([]);
+    setCards([]);
     console.log("useEffect called");
     const fetchData = async (para) => {
       const response = await fetch(
-        `https://api.rawg.io/api/games?key=${process.env.REACT_APP_API_KEY}&search=${para.word}`
+        `https://api.rawg.io/api/games?key=${process.env.REACT_APP_API_KEY}&search=${para.word}&ordering=-metacritic`
       );
       const api = await response.json();
-      setData(api.results);
+      setCards(api.results);
     };
     fetchData(params);
   }, []);
@@ -31,6 +31,7 @@ function Search() {
         <Filter />
         <main className="main-container-content">
           <NavSidebar />
+
           <CardList />
         </main>
       </div>

@@ -1,5 +1,5 @@
 import GlobalContext from "../GlobalContext";
-import { useContext } from "react";
+import { PureComponent, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Cards({ d }) {
@@ -20,7 +20,7 @@ function Cards({ d }) {
         <div className="game-card-image">
           <img
             className="test"
-            src={d.background_image}
+            src={d.background_image || "../test.jpg"}
             alt="Girl in a jacket"
           />
           <div className="game-card-consoles">

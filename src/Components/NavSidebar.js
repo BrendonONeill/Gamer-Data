@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faMedal,
   faTrophy,
   faGamepad,
   faPersonRunning,
@@ -13,18 +12,26 @@ import {
   faUser,
   faLayerGroup,
 } from "@fortawesome/free-solid-svg-icons";
+import GlobalContext from "../GlobalContext";
+import { useContext } from "react";
 
 function NavSidebar() {
+  const { setCards, resetPagination } = useContext(GlobalContext);
+  const resetState = () => {
+    setCards([]);
+  };
   return (
     <div className="sidebar">
       <ul>
-        <li>
-          <span className="testing-icon">
-            <FontAwesomeIcon icon={faUser} />
-          </span>{" "}
-          Profile
-        </li>
-        <NavLink to={"/games/User-games"}>
+        <NavLink to={"/games/profile"}>
+          <li>
+            <span className="testing-icon">
+              <FontAwesomeIcon icon={faUser} />
+            </span>{" "}
+            Profile
+          </li>
+        </NavLink>
+        <NavLink to={"/games/User-games"} onClick={resetPagination}>
           <li>
             <span className="testing-icon">
               <FontAwesomeIcon icon={faLayerGroup} />
@@ -34,7 +41,7 @@ function NavSidebar() {
         </NavLink>
       </ul>
       <ul className="main-sidenav">
-        <NavLink to={"/games/"}>
+        <NavLink to={"/games"}>
           <li>
             <span className="testing-icon">
               <FontAwesomeIcon icon={faTrophy} />
@@ -42,7 +49,7 @@ function NavSidebar() {
             The Best
           </li>
         </NavLink>
-        <NavLink to={"/games-genre/action"}>
+        <NavLink to={"/games-genre/action"} onClick={resetPagination}>
           <li>
             <span className="testing-icon">
               <FontAwesomeIcon icon={faGamepad} />
@@ -50,7 +57,7 @@ function NavSidebar() {
             Action
           </li>
         </NavLink>
-        <NavLink to={"/games-genre/adventure"}>
+        <NavLink to={"/games-genre/adventure"} onClick={resetPagination}>
           <li>
             <span className="testing-icon">
               <FontAwesomeIcon icon={faPersonRunning} />
@@ -58,7 +65,7 @@ function NavSidebar() {
             Adventure
           </li>
         </NavLink>
-        <NavLink to={"/games-genre/racing"}>
+        <NavLink to={"/games-genre/racing"} onClick={resetPagination}>
           <li>
             <span className="testing-icon">
               <FontAwesomeIcon icon={faCar} />
@@ -66,7 +73,7 @@ function NavSidebar() {
             Racing
           </li>
         </NavLink>
-        <NavLink to={"/games-genre/shooter"}>
+        <NavLink to={"/games-genre/shooter"} onClick={resetPagination}>
           <li>
             <span className="testing-icon">
               <FontAwesomeIcon icon={faCrosshairs} />
@@ -74,7 +81,10 @@ function NavSidebar() {
             Shooter
           </li>
         </NavLink>
-        <NavLink to={"/games-genre/role-playing-games-rpg"}>
+        <NavLink
+          to={"/games-genre/role-playing-games-rpg"}
+          onClick={resetPagination}
+        >
           <li>
             <span className="testing-icon">
               <FontAwesomeIcon icon={faShieldHalved} />
@@ -82,7 +92,7 @@ function NavSidebar() {
             RPG
           </li>
         </NavLink>
-        <NavLink to={"/games-genre/sports"}>
+        <NavLink to={"/games-genre/sports"} onClick={resetPagination}>
           <li>
             <span className="testing-icon">
               <FontAwesomeIcon icon={faFutbol} />
@@ -90,7 +100,7 @@ function NavSidebar() {
             Sports
           </li>
         </NavLink>
-        <NavLink to={"/games-genre/strategy"}>
+        <NavLink to={"/games-genre/strategy"} onClick={resetPagination}>
           <li>
             <span className="testing-icon">
               <FontAwesomeIcon icon={faChess} />

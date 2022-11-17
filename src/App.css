@@ -150,6 +150,7 @@ body
 {
   position: relative;
   height: 300px;
+  max-width: 300px;
   border-radius: 20px 20px 10px 10px;
   background-color: var(--light-shade-grey);
   display: grid;
@@ -301,7 +302,8 @@ body
   gap: 1rem;
   grid-template-areas: 
   "game-information-title game-information-title game-information-title game-information-title"
-  ". . game-information-button game-information-button"
+  "game-information-title game-information-title game-information-title game-information-title"
+  "game-information-form game-information-form game-information-form game-information-button"
   "game-information-release game-information-score game-information-rating ."
   "game-information-genre game-information-genre game-information-platforms game-information-platforms"
   "game-information-dev game-information-dev game-information-pub game-information-pub "
@@ -311,6 +313,7 @@ body
 .game-information-card-text-title
 {
   grid-area: game-information-title;
+  text-align: center;
 }
 .game-information-card-text-button
 {
@@ -348,6 +351,10 @@ body
 {
   grid-area: game-information-rating;
 }
+.game-information-card-text-form
+{
+  grid-area: game-information-form;
+}
 
 .game-header
 {
@@ -356,3 +363,100 @@ body
   border-bottom: 3px solid white;
   border-radius: 5px;
 }
+
+.firebase-button
+{
+  padding:  0.6rem;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: bold;
+}
+
+[data-colour="Plus"] {
+  background-color: greenyellow;
+}
+[data-colour="Minus"] {
+  background-color: red;
+}
+
+
+
+
+
+@media only screen and (min-width: 768px) and (max-width: 1000px)
+{
+
+  .main-container-content
+  {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar
+{
+  display: none;
+}
+
+
+
+
+
+}
+
+
+
+@media only screen and (min-width: 768px) and (max-width: 1000px)
+{
+
+  .main-container-content
+  {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar
+{
+  display: none;
+}
+.games-grid
+{
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+}
+
+
+
+
+
+}
+
+
+@media only screen and (min-width: 320px) and (max-width: 767px)
+{
+
+
+  .main-container-content
+  {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar
+  {
+    display: none;
+  }
+
+  .games-grid
+{
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+
+}
+
+
+
+
+
+
