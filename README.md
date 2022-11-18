@@ -9,7 +9,12 @@ Need to look into rerendering when in card information.
 Added React query, need to look into more wasnt working how i wanted.  
 Console filter.    
 Clean up some bugs.   
-should be able to deploy for a test run soon.   
+should be able to deploy for a test run soon. 
+
+## Researching 
+Learn a bit more on react query. 
+Understand the Rendering of React. 
+Firebase nosql queries for deletion
 
 responsive design.
 Add and improve accessibility on website.
