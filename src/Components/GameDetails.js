@@ -2,183 +2,60 @@ import GlobalContext from "../GlobalContext";
 import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../Firebase";
-import {
-  collection,
-  addDoc,
-  deleteDoc,
-  query,
-  where,
-  doc,
-  getDocs,
-} from "firebase/firestore";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import Loading from "./Loading";
+import CardInfo from "./CardInfo";
 
 function GameDetails() {
-  const [apiCalled, setApiCalled] = useState(false);
-  const [gameInDB, setGameinDB] = useState(false);
   let params = useParams();
-  const { cardClicked, setCardClicked, uid, loginStatus, games } =
-    useContext(GlobalContext);
+  const {
+    games,
+    cardInfomrationData,
+    setCardInfomrationData,
+    setGameinDB,
+    gameinDB,
+    setGames,
+    uid,
+  } = useContext(GlobalContext);
 
+  //First checking if game in DB then if it is it calls the object in the db else it calls the api.
   useEffect(() => {
-    setGameinDB(false);
-    const test = () => {
-      const db = games.find((game) => game.name === cardClicked.name);
-      console.log("This is db" + db);
-      if (db) {
-        setGameinDB(true);
-
-        setCardClicked(db);
-      }
-    };
-    test();
-    if (gameInDB) {
-    } else {
+    const value = games.some((game) => game.game_id.toString() === params.id);
+    if (value) {
+      console.log("DB");
+      const game = games.find((game) => game.game_id.toString() === params.id);
+      setCardInfomrationData(game);
+      setGameinDB(true);
+    } else if (!value) {
+      console.log("API is called");
       const fetchData = async (para) => {
         const response = await fetch(
           `https://api.rawg.io/api/games/${para.id}?key=${process.env.REACT_APP_API_KEY}`
         );
         const api = await response.json();
-        setCardClicked(api);
-        setApiCalled(true);
+        setCardInfomrationData(api);
+        setGameinDB(false);
       };
       fetchData(params);
     }
     console.log("useEffect called");
   }, []);
 
-  const addToFirebase = (data) => {
-    if (games.length > 5) {
-      return;
-    }
-    const firebaseObject = createObject(data);
-    const addData = async () => {
+  useEffect(() => {
+    const getGames = async () => {
       const gamesCollectionRef = collection(db, "users", `${uid}`, "games");
-      await addDoc(gamesCollectionRef, firebaseObject);
+      const dbGames = await getDocs(gamesCollectionRef);
+      setGames(dbGames.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
-    addData();
-  };
-
-  const deleteFromFirebase = (id) => {
-    const deleteData = async () => {
-      const gamesCollectionRef = collection(db, "users", `${uid}`, "games");
-      const cat = query(gamesCollectionRef, where("games_id", "==", `${id}`));
-      console.log("inter");
-      await deleteDoc(cat);
-    };
-    deleteData();
-  };
-
-  const createObject = (data) => {
-    const obj = {
-      game_id: data.id,
-      name: data.name,
-      image: data.background_image,
-      metacritic: data.metacritic,
-      platforms: data.platforms,
-      parent_platforms: data.parent_platforms,
-      released: data.released,
-      description_raw: data.description_raw,
-      developers: data.developers,
-      publishers: data.publishers,
-      esrb_rating: data.esrb_rating,
-    };
-    return obj;
-  };
+    getGames();
+  }, [gameinDB]);
 
   return (
     <>
-      {gameInDB[0]}
-      {apiCalled ? (
-        <div className="games-information-card">
-          <div>
-            <img src={cardClicked.background_image}></img>
-          </div>
-          <div className="game-information-card-text">
-            <h3 className="game-information-card-text-title">
-              {cardClicked.name}
-            </h3>
-            <div className="game-information-card-text-platforms">
-              <p className="game-header">Platforms</p>
-              <p>{cardClicked.platforms[0].platform.name}</p>
-            </div>
-            {loginStatus && (
-              <>
-                <div className="game-information-card-text-form">
-                  <form>
-                    <label>
-                      Game Status{" "}
-                      <select>
-                        <option>Not Played</option>
-                        <option>Playing</option>
-                        <option>Completed</option>
-                      </select>
-                    </label>
-                    <label>
-                      Rating{" "}
-                      <input type="number" min="0" max="100" value={0}></input>
-                    </label>
-                    <button>Update</button>
-                  </form>
-                </div>
-                <div className="game-information-card-text-button">
-                  {!gameInDB ? (
-                    <button
-                      className="firebase-button "
-                      data-colour="Plus"
-                      onClick={() => addToFirebase(cardClicked)}
-                    >
-                      {" "}
-                      <FontAwesomeIcon icon={faPlus} /> My Games
-                    </button>
-                  ) : (
-                    <button
-                      className="firebase-button "
-                      data-colour="Minus"
-                      onClick={() => deleteFromFirebase(cardClicked.id)}
-                    >
-                      <FontAwesomeIcon icon={faMinus} /> My Games
-                    </button>
-                  )}
-                </div>
-              </>
-            )}
-            <div className="game-information-card-text-genre">
-              <p className="game-header">Genres</p>
-              <p>{cardClicked.genres[0].name}</p>
-            </div>
-            <div className="game-information-card-text-score">
-              <p className="game-header">Metacritic</p>
-              <p>{cardClicked.metacritic}</p>
-            </div>
-            <div className="game-information-card-text-release">
-              <p className="game-header">Release-Date</p>
-              <p>{cardClicked.released}</p>
-            </div>
-            <div className="game-information-card-text-dev">
-              <p className="game-header">Developers</p>
-              <p>{cardClicked.developers[0].name}</p>
-            </div>
-            <div className="game-information-card-text-pub">
-              <p className="game-header">Publishers</p>
-              <p>{cardClicked.publishers[0].name}</p>
-            </div>
-            <div className="game-information-card-text-rating">
-              <p className="game-header">Rating</p>
-              <p>{cardClicked.esrb_rating?.name || "N/A"}</p>
-            </div>
-            <div className="game-information-card-text-details">
-              <p>{cardClicked.description_raw}</p>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div>
-          <h2>Still loading</h2>
-        </div>
-      )}
+      {console.log("rendered")}
+      {console.log(cardInfomrationData)}
+      {Object.keys(cardInfomrationData).length > 0 ? <CardInfo /> : <Loading />}
     </>
   );
 }

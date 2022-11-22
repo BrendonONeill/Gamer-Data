@@ -1,11 +1,7 @@
-import GlobalContext from "../GlobalContext";
-import { PureComponent, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Cards({ d }) {
-  const { setCardClicked, cardClicked } = useContext(GlobalContext);
   const navigate = useNavigate();
-
   const gameInformation = (d) => {
     navigate(`../games-info/${d}`);
   };
@@ -83,7 +79,7 @@ function Cards({ d }) {
         <div className="game-card-title">
           <h3 className="game-card-name">{d.name}</h3>
           <p className="game-card-score">{d.metacritic}</p>
-          <p className="game-card-release">{d.released.substring(0, 4)}</p>
+          <p className="game-card-release">{d.released?.substring(0, 4)}</p>
         </div>
       </div>
     </>

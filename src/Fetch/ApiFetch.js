@@ -1,13 +1,22 @@
-export const fetchData = async () => {
-  const fish = await fetch(
-    `https://api.rawg.io/api/games?ordering=-metacritic&key=${process.env.REACT_APP_API_KEY}&page=1`
+export const fetchData = async ({ pageParam = 1 }) => {
+  const data = await fetch(
+    `https://api.rawg.io/api/games?ordering=-metacritic&key=${process.env.REACT_APP_API_KEY}&page=${pageParam}`
   );
-  return fish.json();
+  return data.json();
 };
 
-export const fetchGenre = (para) => async () => {
-  const response = await fetch(
-    `https://api.rawg.io/api/games?ordering=-metacritic&key=${process.env.REACT_APP_API_KEY}&page=1&genres=${para.genre}`
+export const fetchGenre = async ({ pageParam = 1, queryKey }) => {
+  const genre = queryKey[1];
+  const dataG = await fetch(
+    `https://api.rawg.io/api/games?ordering=-metacritic&key=${process.env.REACT_APP_API_KEY}&page=${pageParam}&genres=${genre}`
   );
-  return response.json();
+  return dataG.json();
+};
+
+export const fetchId = async ({ pageParam = 1, queryKey }) => {
+  const searchTerm = queryKey[1];
+  const dataID = await fetch(
+    `https://api.rawg.io/api/games?ordering=-metacritic&key=${process.env.REACT_APP_API_KEY}&search=${searchTerm}&ordering=-metacritic&&page=${pageParam}`
+  );
+  return dataID.json();
 };

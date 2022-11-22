@@ -4,25 +4,21 @@ import Header from "../Components/Header";
 import Filter from "../Components/Filter";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import GlobalContext from "../GlobalContext";
-import { useContext } from "react";
+import { fetchId } from "../Fetch/ApiFetch";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import Loading from "../Components/Loading";
+import Footer from "../Components/Footer";
 
 function Search() {
-  let params = useParams();
-  const { setCards } = useContext(GlobalContext);
+  let { word } = useParams();
 
-  useEffect(() => {
-    setCards([]);
-    console.log("useEffect called");
-    const fetchData = async (para) => {
-      const response = await fetch(
-        `https://api.rawg.io/api/games?key=${process.env.REACT_APP_API_KEY}&search=${para.word}&ordering=-metacritic`
-      );
-      const api = await response.json();
-      setCards(api.results);
-    };
-    fetchData(params);
-  }, []);
+  const { data, isSuccess, isError, isLoading, isFetching } = useInfiniteQuery(
+    ["gamesId", word],
+    fetchId,
+    {
+      getNextPageParam: (_lastPage, pages) => pages.length + 1,
+    }
+  );
 
   return (
     <>
@@ -31,9 +27,11 @@ function Search() {
         <Filter />
         <main className="main-container-content">
           <NavSidebar />
-
-          <CardList />
+          {isLoading && isFetching ? <Loading /> : ""}
+          {isSuccess && <CardList pages={data.pages} />}
+          {isError ? <h2>error</h2> : ""}
         </main>
+        <Footer />
       </div>
     </>
   );

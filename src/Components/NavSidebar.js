@@ -16,10 +16,8 @@ import GlobalContext from "../GlobalContext";
 import { useContext } from "react";
 
 function NavSidebar() {
-  const { setCards, resetPagination } = useContext(GlobalContext);
-  const resetState = () => {
-    setCards([]);
-  };
+  const { resetPagination } = useContext(GlobalContext);
+
   return (
     <div className="sidebar">
       <ul>
@@ -41,7 +39,7 @@ function NavSidebar() {
         </NavLink>
       </ul>
       <ul className="main-sidenav">
-        <NavLink to={"/games"}>
+        <NavLink to={"/games"} onClick={resetPagination}>
           <li>
             <span className="testing-icon">
               <FontAwesomeIcon icon={faTrophy} />

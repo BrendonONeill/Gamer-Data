@@ -1,15 +1,18 @@
 import Cards from "../Components/Cards";
-import GlobalContext from "../GlobalContext";
-import { useContext } from "react";
+import { Fragment } from "react";
 
-function CardList({ d }) {
-  const { cards } = useContext(GlobalContext);
-
+function CardList({ pages }) {
   return (
     <div className="games-grid">
-      {cards?.map((d) => (
-        <Cards d={d} />
-      ))}
+      {pages.map((result, i) => {
+        return (
+          <Fragment key={i}>
+            {result?.results.map((d) => (
+              <Cards d={d} />
+            ))}
+          </Fragment>
+        );
+      })}
     </div>
   );
 }
