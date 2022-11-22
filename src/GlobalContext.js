@@ -6,11 +6,10 @@ import { useNavigate } from "react-router-dom";
 const GlobalContext = createContext();
 
 export function GlobalProvider({ children }) {
-  const [data, setData] = useState([]);
-
+  const [apiData, setApiData] = useState([]);
+  const [cardInfomrationData, setCardInfomrationData] = useState([]);
   const [pagination, setPagination] = useState(1);
   const [cards, setCards] = useState([]);
-  const [cardClicked, setCardClicked] = useState([]);
   const [games, setGames] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,6 +18,7 @@ export function GlobalProvider({ children }) {
   const [storeData, setStoreData] = useState("");
   const navigate = useNavigate();
   const [loginStatus, setLoginStatus] = useState(false);
+  const [gameInDB, setGameinDB] = useState(false);
 
   const firebaseLogin = (e) => {
     e.preventDefault();
@@ -48,19 +48,23 @@ export function GlobalProvider({ children }) {
     setCards([]);
   };
 
+  const resetCardInfo = () => {
+    setCardInfomrationData([]);
+  };
+
   const storeCardInfo = (id) => {};
 
   return (
     <GlobalContext.Provider
       value={{
-        data,
+        apiData,
         games,
         email,
         password,
         uid,
         currentUser,
         storeData,
-        setData,
+        setApiData,
         setEmail,
         setGames,
         setPassword,
@@ -71,13 +75,16 @@ export function GlobalProvider({ children }) {
         storeCardInfo,
         loginStatus,
         setLoginStatus,
-        cardClicked,
-        setCardClicked,
         pagination,
         setPagination,
         cards,
         setCards,
         resetPagination,
+        cardInfomrationData,
+        setCardInfomrationData,
+        resetCardInfo,
+        gameInDB,
+        setGameinDB,
       }}
     >
       {children}

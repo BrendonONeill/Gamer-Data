@@ -11,6 +11,7 @@ function Filter() {
     navigate(`../games-id/${searchWord}`);
   };
 
+  //old code need to re-write it using react query
   const consoleFilter = (value) => {
     console.log("switched");
     console.log(value);
@@ -21,11 +22,10 @@ function Filter() {
           return platform.platform.name === value;
         });
       });
-      setCards([...filteredCards]);
     }
   };
 
-  const [searchInput, setSerachInput] = useState("");
+  const [searchInput, setSearchInput] = useState("");
   return (
     <div className="filter">
       <div>
@@ -44,7 +44,7 @@ function Filter() {
         <form>
           <input
             value={searchInput}
-            onChange={(e) => setSerachInput(e.target.value)}
+            onChange={(e) => setSearchInput(e.target.value)}
           ></input>
           <button onClick={() => searchNav(searchInput)}>test</button>
         </form>

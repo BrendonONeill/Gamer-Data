@@ -15,7 +15,11 @@ function UserCards({ d }) {
         onClick={() => gameInformation(d.game_id)}
       >
         <div className="game-card-image">
-          <img className="test" src={d.image} alt="Girl in a jacket" />
+          <img
+            className="test"
+            src={d.background_image}
+            alt="Girl in a jacket"
+          />
           <div className="game-card-consoles">
             <ul>
               {d.platforms.some((e) => e.platform.name === "PC") ? (
