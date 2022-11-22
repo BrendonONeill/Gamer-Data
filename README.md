@@ -17,10 +17,10 @@ As of right now it is not deployed but Im getting ever closer to test run online
 I have the API linked aswell as the database. I can add to the database but cant delete right now. there is a few bugs with filtering and game cards information.
 
 ### Working on
-Need to look into rerendering when in card information. 
-Added React query, need to look into more wasnt working how i wanted.  
-Console filter.    
-Clean up some bugs.   
+  
+Working out how I want to deal with the filter.     
+Clean up some bugs. 
+Cleaning up UI. 
 should be able to deploy for a test run soon. 
 
 ## Researching 
