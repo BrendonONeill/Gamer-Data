@@ -17,16 +17,14 @@ As of right now it is not deployed but Im getting ever closer to test run online
 I have the API linked aswell as the database. I can add to the database but cant delete right now. there is a few bugs with filtering and game cards information.
 
 ### Working on
-  
-Working out how I want to deal with the filter.     
+     
 Clean up some bugs. 
 Cleaning up UI. 
-should be able to deploy for a test run soon. 
+should be able to deploy for a test run soon.
+
 
 ## Researching 
-Learn a bit more on react query. 
-Understand the Rendering of React. 
-Firebase nosql queries for deletion
+Better protection on database.
 
 responsive design.
 Add and improve accessibility on website.
