@@ -2,7 +2,6 @@ import CardList from "../Components/CardList";
 import NavSidebar from "../Components/NavSidebar";
 import Header from "../Components/Header";
 import Filter from "../Components/Filter";
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchId } from "../Fetch/ApiFetch";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -11,7 +10,7 @@ import Footer from "../Components/Footer";
 
 function Search() {
   let { word } = useParams();
-
+  // React Query Api call
   const { data, isSuccess, isError, isLoading, isFetching } = useInfiniteQuery(
     ["gamesId", word],
     fetchId,

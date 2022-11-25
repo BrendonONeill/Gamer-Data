@@ -1,3 +1,4 @@
+// These are my api calls using React Query
 export const fetchData = async ({ pageParam = 1 }) => {
   const data = await fetch(
     `https://api.rawg.io/api/games?ordering=-metacritic&key=${process.env.REACT_APP_API_KEY}&page=${pageParam}`

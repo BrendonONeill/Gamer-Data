@@ -15,9 +15,11 @@ function Cards({ d }) {
       >
         <div className="game-card-image">
           <img
-            className="test"
+            className="img-in-card"
             src={d.background_image || "../test.jpg"}
-            alt="Girl in a jacket"
+            alt="Video Game Cover"
+            width="300px"
+            height="170px"
           />
           <div className="game-card-consoles">
             <ul>
@@ -25,7 +27,7 @@ function Cards({ d }) {
                 <li>
                   <img
                     src={"../pc.svg"}
-                    alt="Girl in a jacket"
+                    alt="Platform logo"
                     width="30px"
                     height="30px"
                   />
@@ -39,7 +41,7 @@ function Cards({ d }) {
                 <li>
                   <img
                     src="../playstation.svg"
-                    alt="Girl in a jacket"
+                    alt="Platform logo"
                     width="30px"
                     height="30px"
                   />
@@ -51,7 +53,7 @@ function Cards({ d }) {
                 <li>
                   <img
                     src="../xbox.svg"
-                    alt="Girl in a jacket"
+                    alt="Platform logo"
                     width="30px"
                     height="30px"
                   />
@@ -65,7 +67,7 @@ function Cards({ d }) {
                 <li>
                   <img
                     src="../nintendo.svg"
-                    alt="Girl in a jacket"
+                    alt="Platform logo"
                     width="30px"
                     height="30px"
                   />

@@ -19,28 +19,24 @@ export function GlobalProvider({ children }) {
   const navigate = useNavigate();
   const [loginStatus, setLoginStatus] = useState(false);
   const [gameInDB, setGameinDB] = useState(false);
+  const [loginError, setLoginError] = useState("");
 
   const firebaseLogin = (e) => {
     e.preventDefault();
     console.log("test 1");
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log("test 2");
         const user = userCredential.user;
-        setCurrentUser(user);
         setUid(user.reloadUserInfo.localId);
-        console.info("yes you have signed in");
         setPassword("");
         setEmail("");
         setLoginStatus(true);
-        navigate("../games/User-Games");
+        navigate("../games-user/User-Games");
       })
       .catch((error) => {
-        console.log(error);
         const errorCode = error.code;
-        const errorMessage = error.message;
+        setLoginError(errorCode);
       });
-    console.log("test 3");
   };
 
   const resetPagination = () => {
@@ -85,6 +81,8 @@ export function GlobalProvider({ children }) {
         resetCardInfo,
         gameInDB,
         setGameinDB,
+        loginError,
+        setLoginError,
       }}
     >
       {children}

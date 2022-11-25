@@ -1,35 +1,55 @@
 import { useContext } from "react";
+import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import GlobalContext from "../GlobalContext";
 
 function Login() {
-  const { uid, setEmail, setPassword, firebaseLogin } =
+  const { setEmail, setPassword, firebaseLogin, loginError, setLoginError } =
     useContext(GlobalContext);
 
   return (
     <>
       <div className="main-container">
         <Header />
-        <div>
+        {loginError ? (
+          <div className="error-tab">
+            <h2>Email or Password wrong, please try again.</h2>
+          </div>
+        ) : (
+          ""
+        )}
+        <div className="login-bg">
           <div className="login-container">
-            <form onSubmit={firebaseLogin}>
-              <label className="form-label">email</label>
+            <form className="login-form" onSubmit={firebaseLogin}>
+              <label className="login-form-label">email</label>
               <input
-                className="form-input"
+                className="login-form-input"
                 type="email"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (loginError !== "") {
+                    setLoginError("");
+                  }
+                }}
               />
-              <label className="form-label">password</label>
+              <label className="login-form-label">password</label>
               <input
-                className="form-input"
+                className="login-form-input"
                 type="password"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  if (loginError !== "") {
+                    setLoginError("");
+                  }
+                }}
               />
-              <button type="submit">test</button>
+              <button className="login-form-button" type="submit">
+                Login
+              </button>
             </form>
-            <p>{uid}</p>
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );

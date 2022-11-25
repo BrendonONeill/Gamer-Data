@@ -1,10 +1,16 @@
 import GlobalContext from "../GlobalContext";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPlus,
+  faMinus,
+  faArrowRotateBack,
+} from "@fortawesome/free-solid-svg-icons";
 import { db } from "../Firebase";
 import { collection, addDoc, deleteDoc, doc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
+// context call
 function CardInfo() {
   const {
     loginStatus,
@@ -14,6 +20,7 @@ function CardInfo() {
     games,
     setGameinDB,
   } = useContext(GlobalContext);
+  const navigate = useNavigate();
 
   // Adds a new game to the DB
   const addToFirebase = (data) => {
@@ -29,7 +36,7 @@ function CardInfo() {
     setGameinDB(true);
   };
 
-  // Delets a game from the DB
+  // Deletes a game from the DB
   const deleteFromFirebase = (id) => {
     const deleteData = async () => {
       const gamesCollectionRef = collection(db, "users", `${uid}`, "games");
@@ -40,7 +47,7 @@ function CardInfo() {
     setGameinDB(false);
   };
 
-  //creates a new object of game to be added to the DB
+  //Creates a new object of a game to be added to the DB
   const createObject = (data) => {
     const obj = {
       game_id: data.id,
@@ -61,8 +68,11 @@ function CardInfo() {
 
   return (
     <div className="games-information-card">
-      <div>
-        <img src={cardInfomrationData.background_image}></img>
+      <div className="card-info-image-section">
+        <img
+          src={cardInfomrationData.background_image}
+          alt="Video game cover"
+        ></img>
       </div>
       <div className="game-information-card-text">
         <h3 className="game-information-card-text-title">
@@ -70,7 +80,11 @@ function CardInfo() {
         </h3>
         <div className="game-information-card-text-platforms">
           <p className="game-header">Platforms</p>
-          <p>{cardInfomrationData.platforms[0]?.platform?.name || "test"}</p>
+          {cardInfomrationData?.platforms.map((platform) => (
+            <p className="mapped-text" key={platform.platform.id}>
+              {platform.platform.name}
+            </p>
+          ))}
         </div>
         {loginStatus && (
           <>
@@ -115,34 +129,50 @@ function CardInfo() {
         )}
         <div className="game-information-card-text-genre">
           <p className="game-header">Genres</p>
-          <p>{cardInfomrationData.genres[0]?.name || "NA"}</p>
+          {cardInfomrationData?.genres.map((genre) => (
+            <p className="mapped-text" key={genre.id}>
+              {genre.name}
+            </p>
+          ))}
         </div>
         <div className="game-information-card-text-score">
           <p className="game-header">Metacritic</p>
-          <p>{cardInfomrationData?.metacritic}</p>
+          <p className="game-text-align">{cardInfomrationData?.metacritic}</p>
         </div>
         <div className="game-information-card-text-release">
           <p className="game-header">Release-Date</p>
-          <p>{cardInfomrationData?.released}</p>
+          <p className="game-text-align">{cardInfomrationData?.released}</p>
         </div>
         <div className="game-information-card-text-dev">
           <p className="game-header">Developers</p>
-          <p>{cardInfomrationData?.developers[0]?.name}</p>
+          {cardInfomrationData?.developers.map((developer) => (
+            <p className="mapped-text" key={developer.id}>
+              {developer.name}
+            </p>
+          ))}
         </div>
         <div className="game-information-card-text-pub">
           <p className="game-header">Publishers</p>
-          <p>{cardInfomrationData?.publishers[0]?.name}</p>
+          {cardInfomrationData?.publishers.map((publisher) => (
+            <p className="mapped-text" key={publisher.id}>
+              {publisher.name}
+            </p>
+          ))}
         </div>
         <div className="game-information-card-text-rating">
           <p className="game-header">Rating</p>
-          <p>{cardInfomrationData?.esrb_rating?.name || "N/A"}</p>
+          <p className="game-text-align">
+            {cardInfomrationData?.esrb_rating?.name || "N/A"}
+          </p>
         </div>
         <div className="game-information-card-text-details">
           <p>{cardInfomrationData?.description_raw}</p>
         </div>
       </div>
+      <button className="go-back-button" onClick={() => navigate(-1)}>
+        <FontAwesomeIcon icon={faArrowRotateBack} /> Go Back
+      </button>
     </div>
   );
 }
-
 export default CardInfo;

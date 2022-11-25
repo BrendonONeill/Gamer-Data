@@ -1,6 +1,5 @@
 import Cards from "../Components/Cards";
 import { Fragment } from "react";
-
 function CardList({ pages }) {
   return (
     <div className="games-grid">
@@ -16,5 +15,4 @@ function CardList({ pages }) {
     </div>
   );
 }
-
 export default CardList;

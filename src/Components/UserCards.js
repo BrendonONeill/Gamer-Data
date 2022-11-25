@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-
 function UserCards({ d }) {
   const navigate = useNavigate();
 
@@ -18,15 +17,15 @@ function UserCards({ d }) {
           <img
             className="test"
             src={d.background_image}
-            alt="Girl in a jacket"
+            alt="Video game cover"
           />
           <div className="game-card-consoles">
             <ul>
-              {d.platforms.some((e) => e.platform.name === "PC") ? (
+              {d.parent_platforms.some((e) => e.platform.name === "PC") ? (
                 <li>
                   <img
                     src="../pc.svg"
-                    alt="Girl in a jacket"
+                    alt="Platform logo"
                     width="30px"
                     height="30px"
                   />
@@ -34,11 +33,13 @@ function UserCards({ d }) {
               ) : (
                 ""
               )}
-              {d.platforms.some((e) => e.platform.name === "PlayStation") ? (
+              {d.parent_platforms.some(
+                (e) => e.platform.name === "PlayStation"
+              ) ? (
                 <li>
                   <img
                     src="../playstation.svg"
-                    alt="Girl in a jacket"
+                    alt="Platform logo"
                     width="30px"
                     height="30px"
                   />
@@ -46,11 +47,11 @@ function UserCards({ d }) {
               ) : (
                 ""
               )}
-              {d.platforms.some((e) => e.platform.name === "Xbox") ? (
+              {d.parent_platforms.some((e) => e.platform.name === "Xbox") ? (
                 <li>
                   <img
                     src="../xbox.svg"
-                    alt="Girl in a jacket"
+                    alt="Platform logo"
                     width="30px"
                     height="30px"
                   />
@@ -58,11 +59,13 @@ function UserCards({ d }) {
               ) : (
                 ""
               )}
-              {d.platforms.some((e) => e.platform.name === "Nintendo") ? (
+              {d.parent_platforms.some(
+                (e) => e.platform.name === "Nintendo"
+              ) ? (
                 <li>
                   <img
                     src="../nintendo.svg"
-                    alt="Girl in a jacket"
+                    alt="Platform logo"
                     width="30px"
                     height="30px"
                   />

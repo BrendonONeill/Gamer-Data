@@ -1,11 +1,8 @@
-import GlobalContext from "../GlobalContext";
-import { useContext, useState } from "react";
-import { useEffect } from "react";
 import NavSidebar from "../Components/NavSidebar";
 import Header from "../Components/Header";
 import CardList from "../Components/CardList";
 import Filter from "../Components/Filter";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { fetchGenre } from "../Fetch/ApiFetch";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import Loading from "../Components/Loading";
@@ -13,7 +10,7 @@ import Footer from "../Components/Footer";
 
 function Genre() {
   let { genre } = useParams();
-
+  // React Query Api call
   const {
     data,
     isSuccess,
@@ -38,9 +35,16 @@ function Genre() {
           {isSuccess && (
             <>
               <CardList pages={data.pages} />
-              <button disabled={!hasNextPage} onClick={fetchNextPage}>
-                More
-              </button>
+              <div></div>
+              <div className="pagination-button-section">
+                <button
+                  className="pagination-button"
+                  disabled={!hasNextPage}
+                  onClick={fetchNextPage}
+                >
+                  Load more games
+                </button>
+              </div>
             </>
           )}
           {isError ? <h2>error</h2> : ""}
