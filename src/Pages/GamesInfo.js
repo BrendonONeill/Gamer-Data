@@ -10,8 +10,8 @@ function GamesInfo() {
       <main className="main-container-content">
         <NavSidebar />
         <GameDetails />
-        <Footer />
       </main>
+      <Footer />
     </div>
   );
 }

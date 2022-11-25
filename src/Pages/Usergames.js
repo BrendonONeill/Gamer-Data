@@ -1,14 +1,17 @@
 import { useContext } from "react";
 import GlobalContext from "../GlobalContext";
 import { useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import { db } from "../Firebase";
 import Header from "../Components/Header";
 import UserCardList from "../Components/UserCardList";
 import NavSidebar from "../Components/NavSidebar";
+import Footer from "../Components/Footer";
+import LoginButton from "../Components/LoginButton";
 
 function Usergames() {
-  const { games, uid, setGames } = useContext(GlobalContext);
+  const { uid, setGames, setCurrentUser, loginStatus } =
+    useContext(GlobalContext);
 
   // gathers data from database
   useEffect(() => {
@@ -18,20 +21,36 @@ function Usergames() {
       setGames(dbGames.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getGames();
-    console.log(games);
+    const userinfo = async (user) => {
+      const gamesCollectionRef = collection(db, "users");
+      const userRef = doc(gamesCollectionRef, `${user}`);
+      const userObj = await getDoc(userRef);
+      const userObjFields = userObj?._document?.data?.value?.mapValue?.fields;
+      const Obj = {
+        fname: userObjFields.fname.stringValue,
+        lname: userObjFields.lname.stringValue,
+        email: userObjFields.email.stringValue,
+        uid: user,
+      };
+      setCurrentUser(Obj);
+    };
+    if (loginStatus !== false) {
+      userinfo(uid);
+    }
+    return () => {};
   }, [uid]);
-  console.log(uid);
 
   return (
     <>
       <div className="main-container">
         <Header />
-        {games.length > 0 && (
-          <main className="main-container-content">
-            <NavSidebar />
-            <UserCardList />
-          </main>
-        )}
+
+        <main className="main-container-content">
+          <NavSidebar />
+          {loginStatus === true ? <UserCardList /> : <LoginButton />}
+        </main>
+
+        <Footer />
       </div>
     </>
   );
