@@ -14,20 +14,17 @@ As of right now it is not deployed but Im getting ever closer to test run online
 
 
 ## Progress
-I have the API linked aswell as the database. I can add to the database but cant delete right now. there is a few bugs with filtering and game cards information.
+I have the API linked aswell as the database. I can add to the database and delete
 
 ### Working on
-     
-Clean up some bugs. 
-Cleaning up UI. 
-should be able to deploy for a test run soon.
+Responsive design. 
+Add and improve accessibility on website. 
+should be able to deploy for a test run soon. 
 
 
 ## Researching 
 Better protection on database.
 
-responsive design.
-Add and improve accessibility on website.
 
 ## Bugs
 
