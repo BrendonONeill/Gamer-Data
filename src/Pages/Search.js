@@ -7,8 +7,13 @@ import { fetchId } from "../Fetch/ApiFetch";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import Loading from "../Components/Loading";
 import Footer from "../Components/Footer";
+import OffCanvas from "../Components/OffCanvas";
+import GlobalContext from "../GlobalContext";
+import { useContext } from "react";
 
 function Search() {
+  const { offCanvasActive } = useContext(GlobalContext);
+
   let { word } = useParams();
   // React Query Api call
   const { data, isSuccess, isError, isLoading, isFetching } = useInfiniteQuery(
@@ -26,6 +31,7 @@ function Search() {
         <Filter />
         <main className="main-container-content">
           <NavSidebar />
+          {offCanvasActive && <OffCanvas />}
           {isLoading && isFetching ? <Loading /> : ""}
           {isSuccess && <CardList pages={data.pages} />}
           {isError ? <h2>error</h2> : ""}

@@ -16,8 +16,10 @@ function UserCards({ d }) {
         <div className="game-card-image">
           <img
             className="test"
-            src={d.background_image}
+            src={d.background_image || "../test.jpg"}
             alt="Video game cover"
+            width="300px"
+            height="170px"
           />
           <div className="game-card-consoles">
             <ul>

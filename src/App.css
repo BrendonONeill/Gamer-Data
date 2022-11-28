@@ -27,6 +27,7 @@
   --meta-green-light: rgb(159, 252, 112);
   --add: #19671B;
   --minus:#992E30;
+  --header: rgb(196, 195, 195);
 }
 
 /* Basic css set up */
@@ -134,6 +135,15 @@ body
 
 }
 
+.offCanvasButton
+{
+  background-color: var(--purple-shade);
+  color: var(--font-grey);
+  padding: 0.8rem;
+  font-size: 1.5rem;
+  border-radius: 10px;
+}
+
 .logo-nav
 {
   display: flex;
@@ -160,6 +170,25 @@ body
 {
   color: var(--call-to-action-red);
 }
+
+.offCanvas
+{
+  display: none;
+}
+
+.nav-user
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-user p
+{
+  font-weight: bold;
+
+}
+
 
 
 /* Footer section */
@@ -305,6 +334,25 @@ footer
   margin-inline: 0.5rem;
 }
 
+.offCanvas-nav
+{
+  z-index: 10;
+  width: 100%;
+  display: none;
+}
+
+
+.offCanvas-active
+{
+  left: 0;
+  position: fixed;
+}
+
+.offCanvas-nav ul li
+{
+  margin-bottom: 0.5rem;
+}
+
 
 
 /*   Main and User card section   */
@@ -313,6 +361,7 @@ footer
   display: grid;
   grid-template-columns: 1fr 4fr;
   padding-top: 0.5rem;
+  position: relative;
   min-height: 90vh;
 }
 
@@ -433,6 +482,8 @@ footer
   text-align: center;
   padding-bottom: 0.4rem;
   border-bottom: 1px solid var(--purple-shade);
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 .game-card-release
 {
@@ -516,7 +567,7 @@ footer
    "game-information-title game-information-title game-information-title game-information-title"
    "game-information-title game-information-title game-information-title game-information-title"
    "game-information-form game-information-form game-information-form game-information-button"
-   "game-information-release game-information-score game-information-rating ."
+   "game-information-release game-information-release game-information-score game-information-rating"
    "game-information-genre game-information-genre game-information-platforms game-information-platforms"
    "game-information-dev game-information-dev game-information-pub game-information-pub "
    "game-information-details game-information-details game-information-details game-information-details " ;
@@ -596,6 +647,8 @@ footer
    border-bottom: 3px solid var(--dark-purple-shade);
    margin-bottom: 0.6rem;
    text-align: center;
+   font-weight: bold;
+   color: var(--header);
  }
  
  .game-text-align
@@ -688,12 +741,54 @@ footer
   background-color: var(--call-to-action-red);
 }
 
+@keyframes myAnim {
+	0% {
+		opacity: 0;
+		transform: translateY(-250px);
+	}
 
+  50%
+  {
+    opacity: 0.7;
+  }
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
 
 
 
 /* Responsive design still working on this section */
-@media only screen and (min-width: 768px) and (max-width: 1000px)
+/* Laptops  */
+@media only screen and (max-width: 1439px)
+{
+  .sidebar ul li
+  {
+    font-size: 1rem;
+  }
+
+  .game-card-name
+  {
+    font-size: 1rem;
+  }
+
+  .logo-nav
+  {
+    flex-basis: 20%;
+  }
+
+  .game-card-consoles
+  {
+    max-width: 18%;
+  }
+
+}
+
+
+/* Tablets */
+@media only screen and (max-width: 1023px)
 {
 
   .main-container-content
@@ -702,56 +797,139 @@ footer
     grid-template-columns: 1fr;
   }
 
-  .sidebar
-{
-  display: none;
-}
-
-}
-
-
-
-@media only screen and (min-width: 768px) and (max-width: 1000px)
-{
-
-  .main-container-content
+  .offCanvas
   {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: block;
+    flex-basis: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  .sidebar
-{
-  display: none;
-}
-.games-grid
-{
-  grid-template-columns: repeat(2, 1fr);
-  justify-items: center;
-}
-
-}
-
-
-@media only screen and (min-width: 320px) and (max-width: 767px)
-{
-
-
-  .main-container-content
-  {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
-  .sidebar
+  .mobile-hide
   {
     display: none;
   }
+
+  .offCanvas-nav
+  {
+    display: block;
+    animation: myAnim 0.5s ease-in-out 0s 1 normal both;
+  }
+
+  .logo-nav
+  {
+    flex-basis: 25%;
+  }
+
+  .login-container
+  {
+    padding: 0;
+  }
+
+  .login-form-input
+  {
+    width: 400px;
+  }
+
+
+}
+
+/* Phones */
+@media only screen and (min-width: 320px) and (max-width: 767px)
+{
+
+  .login-container form
+  {
+    margin: 0;
+  }
+
+  .login-form-input
+  {
+    width: 250px;
+  }
+
+  .logo-nav
+  {
+    flex-basis: 30%;
+  }
+
+  .sign-in
+  {
+    font-size: 0.8rem;
+  }
+
+  .logo
+  {
+    font-size: 1rem;
+  }
+
+
 
   .games-grid
 {
   grid-template-columns: 1fr;
   justify-items: center;
+}
+
+.game-card
+{
+  width: 300px;
+}
+
+.game-information-card-text
+{
+  grid-template-areas: 
+  "game-information-title game-information-title"
+  "game-information-title game-information-title"
+  "game-information-form game-information-form"
+  ". game-information-button"
+  "game-information-release game-information-release"
+  "game-information-rating game-information-score"
+  "game-information-platforms game-information-genre"
+  "game-information-dev game-information-dev"
+  "game-information-pub game-information-pub"
+  "game-information-details game-information-details" ;
+}
+
+.mapped-text
+{
+  font-size: 0.9rem;
+}
+
+.game-information-card-text-button
+{
+  text-align: center;
+}
+
+.game-header
+{
+  font-size: 0.9rem;
+}
+
+.profile-card
+{
+  max-width: 80%;
+}
+
+.profile-card-img
+{
+  max-width: 60%;
+}
+
+.profile-card-section
+{
+  font-size: 1.2rem;
+}
+
+
+footer
+{
+  position: relative;
+  gap: 3rem;
+  padding-top: 3rem ;
+  flex-flow: column;
+ 
 }
 
 

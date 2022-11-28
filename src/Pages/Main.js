@@ -2,10 +2,14 @@ import NavSidebar from "../Components/NavSidebar";
 import Header from "../Components/Header";
 import CardList from "../Components/CardList";
 import Filter from "../Components/Filter";
+import GlobalContext from "../GlobalContext";
+import { useContext, useEffect } from "react";
 import { fetchData } from "../Fetch/ApiFetch";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import Footer from "../Components/Footer";
 import Loading from "../Components/Loading";
+import OffCanvas from "../Components/OffCanvas";
+import { useLocation } from "react-router-dom";
 
 function Main() {
   const {
@@ -20,6 +24,14 @@ function Main() {
   } = useInfiniteQuery(["apiGames"], fetchData, {
     getNextPageParam: (_lastPage, pages) => pages.length + 1,
   });
+  let location = useLocation();
+  const { offCanvasActive, setOffCanvasActive, setDBFull } =
+    useContext(GlobalContext);
+
+  useEffect(() => {
+    setOffCanvasActive(false);
+    setDBFull(false);
+  }, [location]);
 
   return (
     <>
@@ -28,6 +40,7 @@ function Main() {
         <Filter />
         <main className="main-container-content">
           <NavSidebar />
+          {offCanvasActive && <OffCanvas />}
           {isLoading && isFetching && isFetchingNextPage ? <Loading /> : ""}
           {isSuccess && (
             <>
