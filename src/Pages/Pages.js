@@ -11,10 +11,10 @@ function Pages() {
   return (
     <>
       <Routes>
-        <Route path="games/" element={<Main />} />
-        <Route path="games/Login" element={<Login />} />
+        <Route path="/games/" element={<Main />} />
+        <Route path="/games/Login" element={<Login />} />
         <Route path="/games-id/:word" element={<Search />} />
-        <Route path="games-user/User-Games" element={<Usergames />} />
+        <Route path="/games-user/User-Games" element={<Usergames />} />
         <Route path="/games-genre/:genre" element={<Genre />} />
         <Route path="/games-info/:id" element={<GamesInfo />} />
         <Route path="/games-userp/profile" element={<User />} />
