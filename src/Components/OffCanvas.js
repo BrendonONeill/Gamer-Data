@@ -54,7 +54,7 @@ function OffCanvas() {
         </NavLink>
 
         <NavLink
-          to={"/games"}
+          to={"/"}
           className={({ isActive }) => (isActive ? "active-link" : "")}
         >
           <li>
