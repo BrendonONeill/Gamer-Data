@@ -8,10 +8,19 @@ import UserCardList from "../Components/UserCardList";
 import NavSidebar from "../Components/NavSidebar";
 import Footer from "../Components/Footer";
 import LoginButton from "../Components/LoginButton";
+import OffCanvas from "../Components/OffCanvas";
+import { useLocation } from "react-router-dom";
 
 function Usergames() {
-  const { uid, setGames, setCurrentUser, loginStatus } =
-    useContext(GlobalContext);
+  let location = useLocation();
+  const {
+    uid,
+    setGames,
+    setCurrentUser,
+    loginStatus,
+    offCanvasActive,
+    setOffCanvasActive,
+  } = useContext(GlobalContext);
 
   // gathers data from database
   useEffect(() => {
@@ -40,6 +49,10 @@ function Usergames() {
     return () => {};
   }, [uid]);
 
+  useEffect(() => {
+    setOffCanvasActive(false);
+  }, [location]);
+
   return (
     <>
       <div className="main-container">
@@ -47,6 +60,7 @@ function Usergames() {
 
         <main className="main-container-content">
           <NavSidebar />
+          {offCanvasActive && <OffCanvas />}
           {loginStatus === true ? <UserCardList /> : <LoginButton />}
         </main>
 

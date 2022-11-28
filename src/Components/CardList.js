@@ -7,7 +7,7 @@ function CardList({ pages }) {
         return (
           <Fragment key={i}>
             {result?.results.map((d) => (
-              <Cards d={d} />
+              <Cards key={d.id} d={d} />
             ))}
           </Fragment>
         );

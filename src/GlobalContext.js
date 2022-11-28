@@ -20,6 +20,12 @@ export function GlobalProvider({ children }) {
   const [loginStatus, setLoginStatus] = useState(false);
   const [gameInDB, setGameinDB] = useState(false);
   const [loginError, setLoginError] = useState("");
+  const [offCanvasActive, setOffCanvasActive] = useState(false);
+  const [dbFull, setDBFull] = useState(false);
+
+  const activeNav = () => {
+    setOffCanvasActive(!offCanvasActive);
+  };
 
   const firebaseLogin = (e) => {
     e.preventDefault();
@@ -83,6 +89,11 @@ export function GlobalProvider({ children }) {
         setGameinDB,
         loginError,
         setLoginError,
+        offCanvasActive,
+        setOffCanvasActive,
+        activeNav,
+        dbFull,
+        setDBFull,
       }}
     >
       {children}

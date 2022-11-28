@@ -16,17 +16,18 @@ import {
   faPowerOff,
 } from "@fortawesome/free-solid-svg-icons";
 
-function NavSidebar() {
+function OffCanvas() {
   // Context call
-  const { loginStatus, setCurrentUser, setLoginStatus } =
+  const { loginStatus, setCurrentUser, setLoginStatus, offCanvasActive } =
     useContext(GlobalContext);
   // Logs user out
   const logout = () => {
     setCurrentUser([]);
     setLoginStatus(false);
   };
+
   return (
-    <div className="sidebar mobile-hide">
+    <div className="sidebar offCanvas-nav">
       <ul className="main-sidenav">
         <NavLink
           to={"/games-userp/profile"}
@@ -162,4 +163,4 @@ function NavSidebar() {
   );
 }
 
-export default NavSidebar;
+export default OffCanvas;

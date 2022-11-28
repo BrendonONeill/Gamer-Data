@@ -9,6 +9,7 @@ function Cards({ d }) {
   return (
     <>
       <div
+        role="button"
         className="game-card"
         key={d.id}
         onClick={() => gameInformation(d.id)}
@@ -79,7 +80,7 @@ function Cards({ d }) {
           </div>
         </div>
         <div className="game-card-title">
-          <h3 className="game-card-name">{d.name}</h3>
+          <p className="game-card-name">{d.name}</p>
           <p className="game-card-score">{d.metacritic}</p>
           <p className="game-card-release">{d.released?.substring(0, 4)}</p>
         </div>
