@@ -11,7 +11,7 @@ function Pages() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/games/" element={<Main />} />
         <Route path="/games/Login" element={<Login />} />
         <Route path="/games-id/:word" element={<Search />} />
         <Route path="/games-user/User-Games" element={<Usergames />} />
