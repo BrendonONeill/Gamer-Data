@@ -17,9 +17,7 @@ As of right now it is not deployed but Im getting ever closer to test run online
 I have the API linked aswell as the database. I can add to the database and delete
 
 ### Working on
-Responsive design. 
 Add and improve accessibility on website. 
-should be able to deploy for a test run soon. 
 
 
 ## Researching 
