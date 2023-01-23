@@ -19,7 +19,7 @@ function Header() {
       <div
         className="logo-nav"
         onClick={() => {
-          navigate("/games");
+          navigate("/");
         }}
       >
         <h1 className="logo">Gamer-Data</h1>

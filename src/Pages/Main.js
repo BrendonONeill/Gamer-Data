@@ -10,6 +10,7 @@ import Footer from "../Components/Footer";
 import Loading from "../Components/Loading";
 import OffCanvas from "../Components/OffCanvas";
 import { useLocation } from "react-router-dom";
+import CardCaro from "../Components/CardCaro";
 
 function Main() {
   const {
@@ -38,6 +39,7 @@ function Main() {
       <div className="main-container">
         <Header />
         <Filter />
+        <CardCaro />
         <main className="main-container-content">
           <NavSidebar />
           {offCanvasActive && <OffCanvas />}
