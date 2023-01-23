@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap');
+
 /* Reset */
 *,*::before,*::after
 {
@@ -397,6 +398,77 @@ footer
   background-color: var(--call-to-action-red);
 }
 
+.carousel-container
+{
+  margin-top: 1rem;
+  width: 100%;
+  padding-block: 1rem;
+  background-color: var(--light-shade-grey);
+  border-radius: 20px;
+}
+
+.test-slide-container
+{
+  padding: 1rem;
+}
+
+.test-slide
+{
+  border-radius: 10px;
+  border: 5px solid var(--light-shade-grey);
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+}
+.test-slide:hover
+{
+  border: 5px solid var(--purple-shade);
+  position: relative;
+}
+
+.test-slide img
+{
+  border-radius: 10px;
+  min-height: 100%;
+}
+
+.test-slide-grad
+{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.85) 70%); 
+  border-radius: 10px;
+}
+
+.test-slide-text
+{
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translate(-50%,0);
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 80%;
+  text-align: center;
+}
+
+.test-slide-score
+{
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+  padding: 0.6rem;
+  font-weight: 600;
+  background-color: var(--body-black);
+  border: 3px solid var(--meta-green);
+  border-right: 3px solid var(--meta-green-light);
+  border-top: 3px solid var(--meta-green-light);
+}
 
 /* Cards on main page */
 
@@ -533,6 +605,7 @@ footer
   color: var(--font-grey);
   padding: 0.4rem;
   border: 1px solid var(--dark-purple-shade);
+  border-radius: 0 10px 10px 0;
 }
 
  /* Game Card Information */
@@ -675,6 +748,7 @@ footer
 
 .go-back-button
 {
+  cursor: pointer;
   position: absolute;
   top: 1.4rem;
   left: 1.4rem;
@@ -830,6 +904,11 @@ footer
   .login-form-input
   {
     width: 400px;
+  }
+
+  .carousel-container
+  {
+    display: none;
   }
 
 

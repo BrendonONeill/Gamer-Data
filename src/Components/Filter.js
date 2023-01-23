@@ -14,12 +14,15 @@ function Filter() {
     <div className="filter">
       <div>
         <form>
-          <input
-            className="filter-input"
-            value={searchInput}
-            placeholder="Pokemon"
-            onChange={(e) => setSearchInput(e.target.value)}
-          ></input>
+          <label HTMLfor="searchGame">
+            <input
+              id="searchGame"
+              className="filter-input"
+              value={searchInput}
+              placeholder="Pokemon"
+              onChange={(e) => setSearchInput(e.target.value)}
+            ></input>
+          </label>
           <button
             className="filter-input-button"
             onClick={() => searchNav(searchInput)}

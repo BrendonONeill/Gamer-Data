@@ -32,7 +32,7 @@ function Footer() {
                 LinkedIn
               </li>
             </a>
-            <a href="#">
+            <a href="https://brendononeill.github.io/Portfolio-Revamp/index.html">
               <li className="footer-links">
                 <img
                   src="../folder.svg"
