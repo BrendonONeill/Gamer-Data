@@ -17,7 +17,9 @@ Set if the game is completed or not.
 Deployed on render with firebase as the database.
 
 ### Working on
-Add and improve accessibility on website.
+Adding a11y functionallity to the cards for more improved accessibility on website. 
+Users can rate games on their account and sort them based on rating. 
+
 
 ## Researching 
 Better protection on database.
