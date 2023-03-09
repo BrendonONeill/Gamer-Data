@@ -24,3 +24,7 @@ Users can rate games on their account and sort them based on rating.
 ## Researching 
 Better protection on database.
 
+
+## Bugs
+When loading new search after the first search it crashes. 
+
