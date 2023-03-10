@@ -1,5 +1,5 @@
 import GlobalContext from "../GlobalContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
@@ -7,11 +7,13 @@ import {
   faArrowRotateBack,
 } from "@fortawesome/free-solid-svg-icons";
 import { db } from "../Firebase";
-import { collection, addDoc, deleteDoc, doc } from "firebase/firestore";
+import { collection, addDoc, deleteDoc, doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 // context call
 function CardInfo() {
+  const [gameStatus, setGameStaus] = useState("");
+  const [rating, setRating] = useState(0);
   const {
     loginStatus,
     cardInfomrationData,
@@ -69,8 +71,43 @@ function CardInfo() {
       publishers: data.publishers,
       esrb_rating: data.esrb_rating,
       genres: data.genres,
+      rating: 0,
+      gammeStatus: "Not Played",
     };
     return obj;
+  };
+
+  //Adds Users rating to selected game
+  const updateInFirebase = (id, data, rating, gameStatus) => {
+    if (rating > 100) {
+      rating = 100;
+    } else if (rating < 0) {
+      rating = 0;
+    }
+    const updateData = async () => {
+      const gamesCollectionRef = collection(db, "users", `${uid}`, "games");
+      const docRef = doc(gamesCollectionRef, `${id}`);
+      const newData = {
+        game_id: data.id,
+        name: data.name,
+        background_image: data.background_image,
+        metacritic: data.metacritic,
+        platforms: data.platforms,
+        parent_platforms: data.parent_platforms,
+        released: data.released,
+        description_raw: data.description_raw,
+        developers: data.developers,
+        publishers: data.publishers,
+        esrb_rating: data.esrb_rating,
+        genres: data.genres,
+        rating: rating,
+        gameStatus: gameStatus,
+      };
+      await setDoc(docRef, newData);
+    };
+    updateData();
+    setRating(0);
+    navigate("../games-user/User-games");
   };
 
   return (
@@ -101,23 +138,50 @@ function CardInfo() {
           </div>
           {loginStatus && (
             <>
-              <div className="game-information-card-text-form">
-                <form>
-                  <label>
-                    Game Status{" "}
-                    <select>
-                      <option>Not Played</option>
-                      <option>Playing</option>
-                      <option>Completed</option>
-                    </select>
-                  </label>
-                  <label>
-                    Rating{" "}
-                    <input type="number" min="0" max="100" value={0}></input>
-                  </label>
-                  <button>Update</button>
-                </form>
-              </div>
+              {gameInDB && (
+                <div className="game-information-card-text-form">
+                  <form className="game-info-form">
+                    <label className="game-info-form-lable">
+                      Game Status{" "}
+                      <select
+                        className="game-info-form-input"
+                        onChange={(e) => setGameStaus(e.target.value)}
+                      >
+                        <option selected></option>
+                        <option value={"Not Played"}>Not Played</option>
+                        <option value={"Playing"}>Playing</option>
+                        <option value={"Completed"}>Completed</option>
+                      </select>
+                    </label>
+                    <label className="game-info-form-lable">
+                      Rating{" "}
+                      <input
+                        className="game-info-form-input"
+                        type="number"
+                        min="0"
+                        max="100"
+                        placeholder={cardInfomrationData?.rating || 10}
+                        onChange={(e) => setRating(Number(e.target.value))}
+                      ></input>
+                    </label>
+                    {gameStatus !== "" && (
+                      <button
+                        className="game-info-form-button"
+                        onClick={() =>
+                          updateInFirebase(
+                            cardInfomrationData.id,
+                            cardInfomrationData,
+                            rating,
+                            gameStatus
+                          )
+                        }
+                      >
+                        Update
+                      </button>
+                    )}
+                  </form>
+                </div>
+              )}
               <div className="game-information-card-text-button">
                 {!gameInDB ? (
                   <button

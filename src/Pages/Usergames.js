@@ -15,6 +15,7 @@ function Usergames() {
   let location = useLocation();
   const {
     uid,
+    games,
     setGames,
     setCurrentUser,
     loginStatus,
@@ -57,7 +58,11 @@ function Usergames() {
     <>
       <div className="main-container">
         <Header />
-
+        <div>
+          <div className="user-stats">
+            <p>Games in Collection: ( {games.length}/20 )</p>
+          </div>
+        </div>
         <main className="main-container-content">
           <NavSidebar />
           {offCanvasActive && <OffCanvas />}

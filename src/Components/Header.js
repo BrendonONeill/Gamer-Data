@@ -35,15 +35,15 @@ function Header() {
       ) : (
         <ul>
           <li>
-            <a
+            <button
               className="sign-in"
               data-bg-colour="purple"
               onClick={() => {
                 navigate("../games/Login");
               }}
             >
-              Sign In
-            </a>
+              Login
+            </button>
           </li>
         </ul>
       )}

@@ -29,6 +29,8 @@
   --add: #19671B;
   --minus:#992E30;
   --header: rgb(196, 195, 195);
+  --completed: #24AB26;
+  --playing: #F7CA65;
 }
 
 /* Basic css set up */
@@ -52,7 +54,6 @@ body
   margin: 0 auto;
   background-color: var(--main-container-black);
 }
-
 
 
 /* Login */
@@ -156,6 +157,10 @@ body
 .sign-in
 {
   cursor: pointer;
+  padding: 0.8rem 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 10px;
 }
 
 .sign-in:hover
@@ -475,6 +480,9 @@ footer
 .game-card
 {
   position: relative;
+  color: var(--font-grey);
+  font-size: 1rem;
+  font-family: 'Orbitron', sans-serif;
   height: 300px;
   max-width: 300px;
   border-radius: 20px 20px 10px 10px;
@@ -552,14 +560,17 @@ footer
   color: rgb(240, 240, 240);
   grid-area: game-name;
   text-align: center;
-  padding-bottom: 0.4rem;
+  padding-bottom: 0.2rem;
   border-bottom: 1px solid var(--purple-shade);
   font-size: 1.2rem;
   font-weight: bold;
+  min-height: 55px;
 }
 .game-card-release
 {
   grid-area: release ;
+  padding-block: 0.8rem;
+  text-align: left;
 }
 .game-card-score
 {
@@ -574,6 +585,32 @@ footer
   border: 3px solid var(--meta-green);
   border-right: 3px solid var(--meta-green-light);
   border-top: 3px solid var(--meta-green-light);
+}
+
+.game-card-rating
+{
+  position: absolute;
+  bottom: 15px;
+  right: 10px;
+  padding: 0.5rem;
+  background-color: var(--dark-purple-shade);
+  border-radius: 10px;
+  z-index: 5;
+  min-width: 60px;
+}
+
+.game-card-gamestatus
+{
+  position: absolute;
+  width: 100%;
+  border-radius: 0 0 10px 10px;
+  bottom: 0;
+  z-index: 2;
+}
+
+.game-card:hover > .game-card-gamestatus
+{
+  display: none;
 }
 
 
@@ -655,6 +692,7 @@ footer
  .game-information-card-text-button
  {
    grid-area: game-information-button;
+   padding: 1rem;
  }
  .game-information-card-text-score
  {
@@ -690,8 +728,42 @@ footer
  }
  .game-information-card-text-form
  {
-   display: none;
    grid-area: game-information-form;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+
+ .game-info-form
+ {
+  padding: 1rem;
+  display: flex;
+  width: 100%;
+ }
+
+ .game-info-form-lable
+ {
+    padding: 0.2rem;
+ }
+
+ .game-info-form-input
+ {
+  padding: 0.4rem;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--dark-purple-shade);
+  color: var(--font-grey);
+  margin: 0.5rem;
+ }
+
+ .game-info-form-button
+ {
+  padding:  0.4rem;
+  max-height: 40px;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: bold;
+  background-color: var(--call-to-action-red);
  }
 
  .firebase-button
@@ -832,6 +904,27 @@ footer
 	}
 }
 
+.user-stats
+{
+  padding: 1rem;
+  background-color: var(--light-shade-grey);
+  margin-top: 0.5rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-end;
+  font-weight: bold;
+}
+
+[data ="Playing"]
+{
+ border-bottom: 4px solid var(--playing);
+}
+
+[data ="Completed"]
+{
+ border-bottom: 4px solid var(--completed);
+}
+
 
 
 /* Responsive design still working on this section */
@@ -911,6 +1004,11 @@ footer
     display: none;
   }
 
+  .game-info-form-button
+  {
+    margin-top: 1rem;
+  }
+
 
 }
 
@@ -962,7 +1060,7 @@ footer
   "game-information-title game-information-title"
   "game-information-title game-information-title"
   "game-information-form game-information-form"
-  ". game-information-button"
+  "game-information-button game-information-button"
   "game-information-release game-information-release"
   "game-information-rating game-information-score"
   "game-information-platforms game-information-genre"
@@ -971,14 +1069,26 @@ footer
   "game-information-details game-information-details" ;
 }
 
-.mapped-text
+.game-info-form
+{
+  flex-flow: column;
+}
+
+.game-info-form-lable
 {
   font-size: 0.9rem;
 }
 
 .game-information-card-text-button
 {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+
+.mapped-text
+{
+  font-size: 0.9rem;
 }
 
 .game-header
