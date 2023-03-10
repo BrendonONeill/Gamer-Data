@@ -10,21 +10,23 @@ Using useEffect less for API calls and instead using react query.
 
 ## Potentail future Features
 See other users games colection if public to other users. 
-rate games in your collection how how satified you were with them.  
-Set if the game is completed or not. 
+
+## New this deployement 
+Updtaed accessibility. 
+Added new features to rate and pick if the user has completed or playing a game. 
 
 ## Deployment
 Deployed on render with firebase as the database.
 
 ### Working on
-Adding a11y functionallity to the cards for more improved accessibility on website. 
-Users can rate games on their account and sort them based on rating. 
+Adding more a11y functionallity. 
+Cleaning up error handling. 
 
 
 ## Researching 
-Better protection on database.
+Better protection on database. 
 
 
 ## Bugs
-When loading new search after the first search it crashes. 
+Need to update error handling.  
 
