@@ -4,7 +4,7 @@ function Footer() {
       <footer>
         <div className="footer-sections rawg">
           <a href="https://rawg.io/apidocs">
-            <h3>RAWG API</h3>
+            <h4>RAWG API</h4>
             <p>Go to their site</p>
           </a>
         </div>

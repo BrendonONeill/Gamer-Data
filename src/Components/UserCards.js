@@ -8,7 +8,7 @@ function UserCards({ d }) {
 
   return (
     <>
-      <div
+      <button
         className="game-card"
         key={d.id}
         onClick={() => gameInformation(d.game_id)}
@@ -82,8 +82,19 @@ function UserCards({ d }) {
           <h3 className="game-card-name">{d.name}</h3>
           <p className="game-card-score">{d.metacritic}</p>
           <p className="game-card-release">{d.released.substring(0, 4)}</p>
+          {d.rating !== 0 && <p className="game-card-rating">{d.rating}</p>}
         </div>
-      </div>
+        <p
+          className="game-card-gamestatus"
+          data={
+            d.gameStatus === "Playing"
+              ? "Playing"
+              : d.gameStatus === "Completed"
+              ? "Completed"
+              : null
+          }
+        ></p>
+      </button>
     </>
   );
 }
