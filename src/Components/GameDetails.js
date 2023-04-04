@@ -30,7 +30,12 @@ function GameDetails() {
     } else if (!value) {
       const fetchData = async (para) => {
         const response = await fetch(
-          `https://api.rawg.io/api/games/${para.id}?key=${process.env.REACT_APP_API_KEY}`
+          `https://nodeproxy-production.up.railway.app/gamer/gameDetails`,
+          {
+            headers: {
+              id: `${para.id}`,
+            },
+          }
         );
         const api = await response.json();
         setCardInfomrationData(api);
