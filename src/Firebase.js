@@ -13,7 +13,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-console.log("hello im being called" + app);
 
 export const db = getFirestore(app);
 
