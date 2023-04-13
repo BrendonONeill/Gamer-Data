@@ -56,7 +56,8 @@ Here is a sample of how I set up game cards UI.
 ## Working on
 
 - Adding more a11y functionality. 
-- Cleaning up error handling.
+- Cleaning up error handling.  
+- Clean up li accessibility and logout button.  
 
 ## Bugs
 - Need to update error handling.
