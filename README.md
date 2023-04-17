@@ -42,6 +42,34 @@ Here is a sample of how I set up game cards UI.
 
 ```
 
+I added a quick sort for sorting out games
+```js
+export const qsGames = (games, value, low, high) => {
+  if (low > high) {
+    return;
+  }
+  const pivotIndex = partition(games, value, low, high);
+
+  qsGames(games, value, low, pivotIndex - 1);
+  qsGames(games, value, pivotIndex + 1, high);
+  return games;
+};
+
+function partition(games, value, low, high) {
+  const pivot = games[high][value];
+  let i = low - 1;
+
+  for (let j = low; j <= high - 1; j++) {
+    if (games[j][value] >= pivot) {
+      i++;
+      [games[i], games[j]] = [games[j], games[i]];
+    }
+  }
+  [games[i + 1], games[high]] = [games[high], games[i + 1]];
+  return i + 1;
+}
+```
+
 ## Lessons learned
 
 - How react renders and when information will be displayed on the page, I learnt a lot from this project as I didn't fully understand how rendering worked. 
