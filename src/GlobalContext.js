@@ -11,6 +11,7 @@ export function GlobalProvider({ children }) {
   const [pagination, setPagination] = useState(1);
   const [cards, setCards] = useState([]);
   const [games, setGames] = useState([]);
+  const [sortedGames, setSortedGames] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [uid, setUid] = useState("test");
@@ -61,6 +62,7 @@ export function GlobalProvider({ children }) {
       value={{
         apiData,
         games,
+        sortedGames,
         email,
         password,
         uid,
@@ -69,6 +71,7 @@ export function GlobalProvider({ children }) {
         setApiData,
         setEmail,
         setGames,
+        setSortedGames,
         setPassword,
         setUid,
         setCurrentUser,

@@ -1,17 +1,29 @@
 import UserCards from "./UserCards";
 import GlobalContext from "../GlobalContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { qsGames } from "../Fetch/SortData";
 
-function UserCardList({ d }) {
+function UserCardList() {
   // Context call
-  const { games } = useContext(GlobalContext);
+  const { games, sortedGames, setSortedGames } = useContext(GlobalContext);
+
+  useEffect(() => {
+    if (games) {
+      const test = qsGames(games, "metacritic", 0, games.length - 1);
+      setSortedGames(test);
+    }
+  }, [games]);
 
   return (
-    <div className="games-grid">
-      {games.map((d) => (
-        <UserCards d={d} key={d.id} />
-      ))}
-    </div>
+    <>
+      {sortedGames ? (
+        <div className="games-grid">
+          {sortedGames.map((d) => (
+            <UserCards d={d} key={d.id} />
+          ))}
+        </div>
+      ) : null}
+    </>
   );
 }
 

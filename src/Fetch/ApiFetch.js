@@ -1,5 +1,4 @@
 // These are my api calls using React Query
-// These are my api calls using React Query
 export const fetchData = async ({ pageParam = 1 }) => {
   const data = await fetch(
     `https://nodeproxy-production.up.railway.app/gamer/main`,
