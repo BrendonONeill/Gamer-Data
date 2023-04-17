@@ -59,7 +59,7 @@ function Main() {
               </div>
             </>
           )}
-          {isError && <h2>Error has occured, please try again later</h2>}
+          {isError && <h2>Error has occurred, please try again later</h2>}
         </main>
         <Footer />
       </div>

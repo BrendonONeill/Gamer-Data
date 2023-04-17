@@ -1,8 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import GlobalContext from "../GlobalContext";
+import { useContext } from "react";
 
 function Cards({ d }) {
+  const { setCardInfomrationData } = useContext(GlobalContext);
   const navigate = useNavigate();
   const gameInformation = (d) => {
+    setCardInfomrationData("");
     navigate(`../games-info/${d}`);
   };
 
