@@ -1,7 +1,7 @@
 // These are my api calls using React Query
 export const fetchData = async ({ pageParam = 1 }) => {
   const data = await fetch(
-    `https://nodeproxy-production.up.railway.app/gamer/main`,
+    `https://brendonon.cyclic.app/gamer/main`,
     {
       headers: {
         page: `${pageParam}`,
@@ -14,7 +14,7 @@ export const fetchData = async ({ pageParam = 1 }) => {
 export const fetchGenre = async ({ pageParam = 1, queryKey }) => {
   const genre = queryKey[1];
   const dataG = await fetch(
-    `https://nodeproxy-production.up.railway.app/gamer/fetchGenre`,
+    `https://brendonon.cyclic.app/gamer/fetchGenre`,
     {
       headers: {
         page: `${pageParam}`,
@@ -28,7 +28,7 @@ export const fetchGenre = async ({ pageParam = 1, queryKey }) => {
 export const fetchId = async ({ pageParam = 1, queryKey }) => {
   const searchTerm = queryKey[1];
   const dataID = await fetch(
-    `https://nodeproxy-production.up.railway.app/gamer/fetchId`,
+    `https://brendonon.cyclic.app/gamer/fetchId`,
     {
       headers: {
         page: `${pageParam}`,
