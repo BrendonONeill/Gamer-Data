@@ -32,7 +32,7 @@ function GameDetails() {
       const fetchData = async (para) => {
         try {
           const response = await fetch(
-            `nodeproxy-production.up.railway.app/gamer/gameDetails`,
+            `https://nodeproxy-production.up.railway.app/gamer/gameDetails`,
             {
               headers: {
                 id: `${para.id}`,
