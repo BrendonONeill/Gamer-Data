@@ -1,7 +1,7 @@
 // These are my api calls using React Query
 export const fetchData = async ({ pageParam = 1 }) => {
   const data = await fetch(
-    `https://concerned-shirt-dog.cyclic.app/gamer/main`,
+    `https://concerned-shirt-dog.cyclic.app/gamer/main/cat`,
     {
       headers: {
         page: `${pageParam}`,

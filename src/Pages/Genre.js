@@ -6,6 +6,7 @@ import { useParams, useLocation } from "react-router-dom";
 import { fetchGenre } from "../Fetch/ApiFetch";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import Loading from "../Components/Loading";
+import Error from "../Components/Error";
 import Footer from "../Components/Footer";
 import OffCanvas from "../Components/OffCanvas";
 import GlobalContext from "../GlobalContext";
@@ -44,8 +45,11 @@ function Genre() {
         <main className="main-container-content">
           <NavSidebar />
           {offCanvasActive && <OffCanvas />}
-          {isLoading && isFetching && isFetchingNextPage ? <Loading /> : ""}
-          {isSuccess && (
+          {isLoading || isFetching || isFetchingNextPage ? (
+            <Loading />
+          ) : isError ? (
+            <Error />
+          ) : isSuccess ? (
             <>
               <CardList pages={data.pages} />
               <div></div>
@@ -59,8 +63,9 @@ function Genre() {
                 </button>
               </div>
             </>
+          ) : (
+            ""
           )}
-          {isError ? <h2>Couldn't get data, PLease try again later.</h2> : ""}
         </main>
         <Footer />
       </div>

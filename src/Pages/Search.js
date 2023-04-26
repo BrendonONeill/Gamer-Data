@@ -32,9 +32,15 @@ function Search() {
         <main className="main-container-content">
           <NavSidebar />
           {offCanvasActive && <OffCanvas />}
-          {isLoading && isFetching ? <Loading /> : ""}
-          {isSuccess && <CardList pages={data.pages} />}
-          {isError ? <h2>Couldn't get data, PLease try again later.</h2> : ""}
+          {isLoading || isFetching ? (
+            <Loading />
+          ) : isSuccess ? (
+            <CardList pages={data.pages} />
+          ) : isError ? (
+            <h2>Couldn't get data, PLease try again later.</h2>
+          ) : (
+            ""
+          )}
         </main>
         <Footer />
       </div>

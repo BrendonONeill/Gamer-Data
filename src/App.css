@@ -964,6 +964,26 @@ footer
  border-bottom: 4px solid var(--completed);
 }
 
+.message-board
+{
+  width: 90%;
+  padding: 2rem;
+  border-radius: 10px;
+  margin: 2rem auto;
+  background-color: var(--dark-purple-shade);
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.warning
+{
+  background-color: var(--call-to-action-red);
+}
+
+
+
 
 
 /* Responsive design still working on this section */
