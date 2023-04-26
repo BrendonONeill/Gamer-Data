@@ -8,6 +8,7 @@ import { fetchData } from "../Fetch/ApiFetch";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import Footer from "../Components/Footer";
 import Loading from "../Components/Loading";
+import Error from "../Components/Error";
 import OffCanvas from "../Components/OffCanvas";
 import { useLocation } from "react-router-dom";
 import CardCaro from "../Components/CardCaro";
@@ -43,8 +44,11 @@ function Main() {
         <main className="main-container-content">
           <NavSidebar />
           {offCanvasActive && <OffCanvas />}
-          {isLoading && isFetching && isFetchingNextPage ? <Loading /> : ""}
-          {isSuccess && (
+          {isLoading || isFetching || isFetchingNextPage ? (
+            <Loading />
+          ) : isError ? (
+            <Error />
+          ) : isSuccess ? (
             <>
               <CardList pages={data.pages} />
               <div></div>
@@ -58,8 +62,9 @@ function Main() {
                 </button>
               </div>
             </>
+          ) : (
+            ""
           )}
-          {isError && <h2>Error has occurred, please try again later</h2>}
         </main>
         <Footer />
       </div>

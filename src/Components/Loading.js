@@ -1,8 +1,8 @@
 function Loading() {
   return (
     <>
-      <div>
-        <h2>Please Wait, retrieving games data</h2>
+      <div className="message-board">
+        <h2>Please Wait, retrieving games data from API...</h2>
       </div>
     </>
   );
