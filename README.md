@@ -1,4 +1,4 @@
-# Portfolio-Revamp
+# Gamer-Data
 
 This is an app where user's can look up information on video games using an api from RAWG. The user's can also create a collection of games they own and record the games they have played or own. This project was a follow on from the animi-data and bug tracking app using their different concepts. From anini-data That project was mainly using an api and displaying the information on my website. Bug tracking app I worked with a database getting and sending data to my database. I combined both of them by getting information from the api and storing information users selected to add to their collection.
 
