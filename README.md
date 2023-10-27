@@ -89,3 +89,6 @@ function partition(games, value, low, high) {
 
 ## Bugs
 - Need to update error handling.
+- When loading in new games the api calling comes up i want to keep the games on the screen and not the calling api.
+- On card carousel if you select a card it doesn't cause a loading screen.
+- fix disable on button.
