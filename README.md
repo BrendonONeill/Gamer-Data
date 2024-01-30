@@ -84,7 +84,8 @@ function partition(games, value, low, high) {
 ## Working on
 
 - Adding more a11y functionality. 
-- Cleaning up error handling.  
+- Cleaning up error handling.
+- Improving backend connection code.
 - Clean up li accessibility and logout button.  
 
 ## Bugs
