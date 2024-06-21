@@ -32,7 +32,7 @@ function GameDetails() {
       const fetchData = async (para) => {
         try {
           const response = await fetch(
-            `https://concerned-shirt-dog.cyclic.app/gamer/gameDetails`,
+            `https://yko8kw06tyklhyhrgtrg.brendon-projects.blog/gamer/gameDetails`,
             {
               headers: {
                 id: `${para.id}`,
