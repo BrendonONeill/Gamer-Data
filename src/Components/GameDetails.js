@@ -32,7 +32,7 @@ function GameDetails() {
       const fetchData = async (para) => {
         try {
           const response = await fetch(
-            `https://yko8kw06tyklhyhrgtrg.brendon-projects.blog/gamer/gameDetails`,
+            `https://q8gs8gw0s8wwg0804wcw8ogo.brendons-projects.online/gamer/gameDetails`,
             {
               headers: {
                 id: `${para.id}`,
